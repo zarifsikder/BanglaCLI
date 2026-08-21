@@ -1,0 +1,15 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+echo "Installing pptool ..."
+
+WHEEL_URL="https://github.com/Kirlif/PPTool/releases/download/2.0/pptool-2.0-py3-none-any.whl"
+WHEEL_PATH="$TMPDIR/pptool-2.0-py3-none-any.whl"
+
+curl -L -o "$WHEEL_PATH" "$WHEEL_URL" || exit 1
+
+pip install --quiet --force-reinstall "$WHEEL_PATH" || exit 1
+
+rm -f "$WHEEL_PATH"
+
+echo "pptool installed successfully."
+exit 0

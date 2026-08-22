@@ -53,12 +53,11 @@ run_command() {
 
 display_logo() {
     echo -e "${MAGENTA}"
-    echo -e "▀▛▘               ▌ ▌   ▗   ▌"
-    echo -e " ▌▞▀▖▙▀▖▛▚▀▖▌ ▌▚▗▘▚▗▘▞▀▖▄ ▞▀▌"
-    echo -e " ▌▛▀ ▌  ▌▐ ▌▌ ▌▗▚ ▝▞ ▌ ▌▐ ▌ ▌"
-    echo -e " ▘▝▀▘▘  ▘▝ ▘▝▀▘▘ ▘ ▘ ▝▀ ▀▘▝▀▘"
+    echo -e " █▀▀▄ █▀▀█ █▀▀▄ █▀▀▀ █    █▀▀█ █▀▀ █   █ "
+    echo -e " █▀▀▄ █▄▄█ █  █ █ ▀█ █    █▄▄█ █   █   █ "
+    echo -e " ▀▀▀  ▀  ▀ ▀  ▀ ▀▀▀▀ ▀▀▀▀ ▀  ▀ ▀▀▀ ▀▀▀ ▀ "
     echo -e "${RESET}"
-    echo -e "${CYAN}BanglaCLI Repository Installer${RESET}"
+    echo -e "${CYAN}      BanglaCLI Repository Installer${RESET}"
     echo -e ""
 }
 

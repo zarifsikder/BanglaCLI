@@ -1,279 +1,446 @@
-<div align="center">
-  <a href="https://termuxvoid.github.io/">
-    <img alt="TermuxVoid" height="180" src="img/termuxvoid_logo.png">
-    <h1>BanglaCLI APT Repository</h1>
-  </a>
-  <p><b>Unofficial APT Repository: 220+ Ethical Hacking & Pentesting Packages</b></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BanglaCLI · APT Repository</title>
+  <!-- Font & basic styling -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  <div>
-    <a href="https://github.com/zarifsikder/BanglaCLI/stargazers">
-      <img src="https://img.shields.io/github/stars/TermuxVoid/repo?style=for-the-badge&logo=github&color=ffd700&labelColor=0d1117" alt="GitHub Stars">
+    body {
+      background: #0b0e14;
+      color: #e8edf5;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      padding: 2rem 1.5rem;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* header / logo area */
+    .repo-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .repo-header a {
+      text-decoration: none;
+    }
+
+    .repo-header img {
+      height: 140px;
+      width: auto;
+      margin-bottom: 0.5rem;
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.6));
+      transition: transform 0.2s ease;
+    }
+
+    .repo-header img:hover {
+      transform: scale(1.02);
+    }
+
+    .repo-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #b7e4ff, #7aa9ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-top: 0.25rem;
+    }
+
+    .repo-header p {
+      font-size: 1.1rem;
+      color: #a0b3d9;
+      max-width: 650px;
+      margin: 0.5rem auto 1rem;
+    }
+
+    .badge-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin: 0.75rem 0 0.25rem;
+    }
+
+    .badge-group a {
+      display: inline-block;
+    }
+
+    .badge-group img {
+      height: 28px;
+      width: auto;
+    }
+
+    /* card style */
+    .card {
+      background: #141a24;
+      border-radius: 24px;
+      padding: 1.8rem 2rem;
+      margin: 2rem 0;
+      border: 1px solid #29303e;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+      transition: border 0.2s;
+    }
+
+    .card:hover {
+      border-color: #3d4a60;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+      color: #d6e3ff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    h2 small {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #7f93bf;
+      margin-left: 0.5rem;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.75rem;
+      color: #c8d7f5;
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: #262e3d;
+      margin: 1.8rem 0;
+    }
+
+    code, .code-block {
+      background: #0f141e;
+      padding: 0.2rem 0.6rem;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.9rem;
+      color: #b7d0ff;
+      border: 1px solid #28303f;
+    }
+
+    .code-block {
+      display: block;
+      padding: 1rem 1.2rem;
+      overflow-x: auto;
+      margin: 0.8rem 0;
+      background: #0b1019;
+      border-left: 3px solid #4d7aff;
+    }
+
+    .code-block .cmd {
+      color: #b7e0ff;
+    }
+
+    .code-block .out {
+      color: #9bb3e0;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #1f2a3a;
+      padding: 0.5rem 1.4rem;
+      border-radius: 60px;
+      font-weight: 500;
+      color: #d3e2ff;
+      border: 1px solid #3b4862;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn:hover {
+      background: #2a374d;
+      border-color: #5f78a5;
+      color: white;
+    }
+
+    .btn-primary {
+      background: #2b4bff;
+      border-color: #2b4bff;
+      color: white;
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      background: #1d3dd9;
+      border-color: #1d3dd9;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 1.2rem 0;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.8rem 1.2rem;
+      margin: 1.2rem 0;
+    }
+
+    .feature-item {
+      background: #111922;
+      padding: 0.6rem 1rem;
+      border-radius: 40px;
+      border: 1px solid #28303f;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .feature-item strong {
+      color: #b7d0ff;
+    }
+
+    /* details / summary */
+    details {
+      background: #111a25;
+      padding: 0.8rem 1.2rem;
+      border-radius: 18px;
+      margin: 0.8rem 0;
+      border: 1px solid #29323f;
+    }
+
+    summary {
+      font-weight: 600;
+      cursor: pointer;
+      color: #c3d6fc;
+      font-size: 1.05rem;
+      padding: 0.2rem 0;
+    }
+
+    summary:hover {
+      color: #e0ecff;
+    }
+
+    details p, details ul, details .code-block {
+      margin-top: 0.8rem;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+      color: #c9d8f2;
+    }
+
+    li {
+      margin: 0.4rem 0;
+    }
+
+    .support-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    .support-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #1b2535;
+      padding: 0.6rem 1.8rem;
+      border-radius: 60px;
+      text-decoration: none;
+      color: #dae6ff;
+      font-weight: 500;
+      border: 1px solid #31405a;
+      transition: all 0.2s;
+    }
+
+    .support-links a:hover {
+      background: #253244;
+      border-color: #5274b0;
+      color: white;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 3rem;
+      color: #6a7d9e;
+      font-size: 0.95rem;
+      border-top: 1px solid #1d2533;
+      padding-top: 2rem;
+    }
+
+    .footer-note a {
+      color: #8aa5dd;
+      text-decoration: none;
+    }
+
+    .footer-note a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 1.2rem; }
+      .repo-header h1 { font-size: 2rem; }
+      .card { padding: 1.2rem; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .support-links a { padding: 0.5rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- header with updated image -->
+  <div class="repo-header">
+    <a href="https://termuxvoid.github.io/">
+      <img src="https://banglacli.edgeone.dev/file.png" alt="BanglaCLI logo">
+      <h1>BanglaCLI APT Repository</h1>
     </a>
-    <a href="https://github.com/zarifsikder/BanglaCLI/blob/main/LICENSE">
-      <img src="https://img.shields.io/badge/License-BSD_3--Clause-blue?style=for-the-badge&logo=opensourceinitiative" alt="License">
-    </a>
-    <a href="https://github.com/zarifsikder/BanglaCLI/issues">
-      <img src="https://img.shields.io/github/issues/zarifsikder/BanglaCLI?style=for-the-badge&logo=github&color=orange&labelColor=0d1117" alt="GitHub Issues">
-    </a>
+    <p><b>Unofficial APT Repository: 220+ Ethical Hacking &amp; Pentesting Packages</b></p>
+    <div class="badge-group">
+      <a href="https://github.com/zarifsikder/BanglaCLI/stargazers"><img src="https://img.shields.io/github/stars/TermuxVoid/repo?style=for-the-badge&logo=github&color=ffd700&labelColor=0d1117" alt="GitHub Stars"></a>
+      <a href="https://github.com/zarifsikder/BanglaCLI/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-BSD_3--Clause-blue?style=for-the-badge&logo=opensourceinitiative" alt="License"></a>
+      <a href="https://github.com/zarifsikder/BanglaCLI/issues"><img src="https://img.shields.io/github/issues/zarifsikder/BanglaCLI?style=for-the-badge&logo=github&color=orange&labelColor=0d1117" alt="GitHub Issues"></a>
+    </div>
   </div>
+
+  <!-- QUICK INSTALL -->
+  <div class="card">
+    <h2>🚀 Quick Installation</h2>
+    <p>Add the repository and install any tool with a single command:</p>
+    <div class="code-block">
+      <span class="cmd"># Add repository</span><br>
+      curl -sL https://github.com/zarifsikder/BanglaCLI/raw/main/install.sh | bash
+    </div>
+    <div class="code-block">
+      <span class="cmd"># Install any tool (example)</span><br>
+      pkg install metasploit-framework
+    </div>
+    <p style="margin-top:0.5rem;">👉 After adding, run <code>pkg update</code> to refresh the package list.</p>
+  </div>
+
+  <!-- FEATURED TOOLS -->
+  <div class="card">
+    <h2>✨ Featured Tools</h2>
+    <div class="grid-2">
+      <div><strong>Metasploit Framework</strong> <span style="color:#889fc9;">· Exploitation</span><br><span style="color:#b3c7ed;">World's most used pentesting framework.</span></div>
+      <div><strong>Burp Suite</strong> <span style="color:#889fc9;">· Web Security</span><br><span style="color:#b3c7ed;">Leading web application security toolkit.</span></div>
+      <div><strong>Ghidra</strong> <span style="color:#889fc9;">· Reverse Eng.</span><br><span style="color:#b3c7ed;">NSA's high‑end reverse engineering suite.</span></div>
+      <div><strong>THC Hydra</strong> <span style="color:#889fc9;">· Password Cracking</span><br><span style="color:#b3c7ed;">Fast network logon cracker (many protocols).</span></div>
+      <div><strong>SQLMap</strong> <span style="color:#889fc9;">· Web Security</span><br><span style="color:#b3c7ed;">Automatic SQL injection &amp; takeover.</span></div>
+    </div>
+    <div style="margin-top:1rem; text-align:center;">
+      <a href="assets/PACKAGES.md" class="btn btn-primary">📦 Browse all 220+ packages</a>
+    </div>
+  </div>
+
+  <!-- AI AGENTS (quick list) -->
+  <div class="card">
+    <h2>🧠 AI Agents</h2>
+    <div class="feature-grid">
+      <div class="feature-item"><strong>opencode</strong> AI‑powered coding assistant</div>
+      <div class="feature-item"><strong>claude‑code</strong> Anthropic AI assistant</div>
+      <div class="feature-item"><strong>antigravity‑cli</strong> glibc wrapper</div>
+      <div class="feature-item"><strong>copilot‑cli</strong> GitHub Copilot terminal</div>
+      <div class="feature-item"><strong>codex‑cli</strong> OpenAI lightweight agent</div>
+      <div class="feature-item"><strong>mimocode</strong> autonomous AI engineer</div>
+      <div class="feature-item"><strong>openclaude</strong> open‑source coding agent</div>
+      <div class="feature-item"><strong>hermes‑agent</strong> workflow automation</div>
+      <div class="feature-item"><strong>kimi‑code</strong> Moonshot AI assistant</div>
+      <div class="feature-item"><strong>mmx‑cli</strong> MiniMax AI (chat/completion)</div>
+    </div>
+  </div>
+
+  <!-- FAQ (collapsed) -->
+  <div class="card">
+    <h2>❓ Frequently Asked Questions</h2>
+
+    <details>
+      <summary>Are these tools safe to use on a personal device?</summary>
+      <p>Yes. All packages are built from source directly on your device — no pre‑compiled binaries are shipped. However, these are powerful tools; always understand what a tool does before executing it to avoid unintended system changes.</p>
+    </details>
+
+    <details>
+      <summary>Are these tools legal to use?</summary>
+      <p>All tools are for <strong>legal security research and ethical hacking only</strong>. Always obtain proper authorization before testing systems you do not own.</p>
+    </details>
+
+    <details>
+      <summary>Why aren't these in the official Termux repo?</summary>
+      <p>Many tools (Metasploit, Ghidra, etc.) have heavy dependencies, large sizes, or licensing complexities that make them difficult to maintain in the core repositories. We handle the heavy lifting.</p>
+    </details>
+
+    <details>
+      <summary>How often are tools updated?</summary>
+      <ul>
+        <li>Security patches: within 24h</li>
+        <li>Version updates: every Sunday</li>
+        <li>Emergency fixes: as needed</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>How do I request a new package?</summary>
+      <p>Open a <a href="https://github.com/zarifsikder/BanglaCLI/issues" style="color:#7aa9ff;">GitHub Issue</a> or contact us via Telegram (see Support section).</p>
+    </details>
+
+    <details>
+      <summary>How do I uninstall the BanglaCLI repository?</summary>
+      <div class="code-block">
+        curl -sL https://github.com/zarifsikder/BanglaCLI/raw/main/uninstall.sh | bash
+      </div>
+      <p>This removes the repository source and GPG key, but <strong>does not</strong> remove already installed packages.</p>
+    </details>
+
+    <details>
+      <summary>I get "package not found" — what should I do?</summary>
+      <p>Run <code>pkg update</code> after adding the repo. If it persists, try <code>apt update &amp;&amp; pkg search &lt;tool-name&gt;</code>. Check the <a href="assets/PACKAGES.md">full package list</a> for exact names.</p>
+    </details>
+  </div>
+
+  <!-- SUPPORT & COMMUNITY: ONLY TELEGRAM remains -->
+  <div class="card" style="text-align:center;">
+    <h2 style="justify-content:center;">🌐 Support &amp; Community</h2>
+    <p style="color:#b0c6ed; max-width:500px; margin:0 auto 1rem;">Join our community of security researchers and mobile hackers.</p>
+    <div class="support-links">
+      <a href="https://telegram.me/nullxvoid">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        Telegram
+      </a>
+      <!-- removed YouTube & GitHub from support block as requested -->
+    </div>
+    <p style="color:#6f88b0; font-size:0.9rem; margin-top:1.2rem;">✉️ <a href="mailto:BanglaCLI@gmail.com" style="color:#8aa5dd;">BanglaCLI@gmail.com</a></p>
+  </div>
+
+  <!-- footer -->
+  <div class="footer-note">
+    Built with ❤️ for security researchers by <a href="https://github.com/Anon4You">Alienkrishn</a> &middot; Built on-device for best compatibility<br>
+    <span style="font-size:0.85rem; color:#4f6385;">📄 <a href="https://github.com/zarifsikder/BanglaCLI/blob/main/LICENSE" style="color:#6e88b5;">BSD 3‑Clause License</a></span>
+  </div>
+
 </div>
-
-## 📖 Table of Contents
-
-- [Project Overview](#-project-overview)
-- [Prerequisites](#-prerequisites)
-- [Quick Installation](#-quick-installation)
-- [Featured Tools](#-featured-tools)
-- [Legal & Disclaimer](#-legal--disclaimer)
-- [Frequently Asked Questions](#-frequently-asked-questions)
-- [Support & Community](#-support--community)
-- [Contribution & Support](#-contribution--support)
-
----
-
-## 📋 Prerequisites
-
-Before using BanglaCLI, ensure your environment meets these requirements:
-
-- **BanglaCLI** installed from [F-Droid](https://f-droid.org/en/packages/com.termux/) (recommended) or GitHub
-- **Android 7+** with ~2GB free storage for larger tools
-- **Working internet connection** for package downloads
-- **No root required** for most tools (some may need root for certain features)
-
----
-
-## 🔍 Project Overview
-
-**BanglaCLI** is an **unofficial custom APT repository** that bridges the gap between mobile convenience and professional security auditing. We host **220+ advanced security tools** that are not available in the official Termux repositories. Package installation happens on your device: depending on the tool, the package may build from source, install an upstream dependency, or download an upstream release.
-
-Whether you are a professional penetration tester or an ethical hacking enthusiast, BanglaCLI turns your Android device into a portable powerhouse.
-
-> [!NOTE]
-> This repository contains tools that are often excluded from official sources due to complexity, licensing, or security sensitivity. Read a package's installation script and its upstream source before installing it.<br>
-
-## Security & Transparency
-
-BanglaCLI is an unofficial, community-maintained repository. Package definitions and lifecycle scripts are published here so you can inspect what runs on installation and removal. A package may build from source on your device, install through an upstream package manager, or download an upstream release; the package script is the source of truth.
-
-Each package lives in `packages/<name>/` and normally ships a standard Debian layout under `DEBIAN/`:
-
-- `control` — metadata (name, version, dependencies, description)
-- `preinst` — pre-install checks (e.g. architecture validation)
-- `postinst` — performs installation (such as building, downloading, or linking the tool)
-- `postrm` — removes files created by the package when possible
-
-### What packages do—and do not—change
-
-- No package modifies `$PATH`, `$HOME`, `$PREFIX`, or any other Termux environment variable.
-- Most tool packages do not alter existing Termux configuration and expose commands through **symlinks** or package-manager-installed commands instead of environment mutation.
-- Packages whose stated purpose is shell styling, themes, desktop environments, or similar customization may create or change relevant configuration files. Read their scripts carefully before installation and removal.
-- Uninstall scripts are intended to remove files created by the package. Preserve your own configuration backups, especially before installing customization packages.
-
-### Before you install
-
-Security tools are powerful and many have dual-use capabilities. Use them only on systems and data you own or are explicitly authorized to test. Do not install a package solely because it is listed here.
-
-1. Read `packages/<name>/DEBIAN/control`, `preinst`, `postinst`, and `postrm` (where present).
-2. Check every download URL, Git repository, package-manager command, and configuration change in those scripts.
-3. Review the upstream tool and its license, then install it in a test environment first if it is unfamiliar.
-4. Keep backups of personal configuration before installing shell, theme, or desktop packages.
-
-Don't trust — verify. See [CONTRIBUTING.md](CONTRIBUTING.md) for the package layout and [SECURITY.md](SECURITY.md) for the security policy.
-
-### Package-source expectations
-
-When a package obtains software from upstream, its scripts should make the source auditable. Contributors should provide the upstream project URL, use a pinned release, tag, or commit where practical, and verify an upstream checksum or signature when one is available. Review every network download, upstream package-manager command, file/configuration change, exposed command, and uninstall action before installing.
-
-## 🚀 Quick Installation
-
-Getting started is seamless. Run the following one-liner in your Termux terminal to add the repository automatically:
-
-```bash
-# Add repository
-curl -sL https://github.com/zarifsikder/BanglaCLI/raw/main/install.sh | bash
-```
-
-> [!WARNING]
-> Piping a remote script directly to `bash` executes it immediately. For maximum transparency, download and inspect `install.sh` first, then run it locally.
-
-Once the repository is added, you can install any tool using `pkg install`:
-
-```bash
-# Install any tool
-pkg install <tool-name>
-
-# Example
-pkg install metasploit-framework
-```
-
-> [!TIP]
-> After installation, run `pkg update` to refresh your local package database. You can search for tools using `pkg search <tool-name>`.
-
-> [!NOTE]
-> Removing the BanglaCLI repository later does not remove packages you already installed. Use the package manager to remove individual packages; see the [uninstall instructions](#how-do-i-uninstall-the-BanglaCLI-repository) to remove only the repository source and key.
-
-## ✨ Featured Tools
-
-We provide a curated selection of industry-standard tools. Here are some highlights:
-
-<div align="center">
-
-| Tool | Category | Description |
-| :--- | :--- | :--- |
-| **Metasploit Framework** | `Exploitation` | The world's most used penetration testing framework. |
-| **Burp Suite** | `Web Security` | Leading toolkit for web application security testing. |
-| **Ghidra** | `Reverse Eng.` | NSA's high-end software reverse engineering suite. |
-| **THC Hydra** | `Password Cracking` | Fast network logon cracker supporting many protocols. |
-| **SQLMap** | `Web Security` | Automatic SQL injection and database takeover tool. |
-
-</div>
-
-<details>
-<summary><b>📊 View Mermaid Architecture</b></summary>
-
-```mermaid
-graph TD
-    A[BanglaCLI Repo] -->|Provides| B[Exploitation]
-    A -->|Provides| C[Reverse Engineering]
-    A -->|Provides| D[Network Scanning]
-    A -->|Provides| E[Password Attacks]
-
-    B --> B1[Metasploit]
-    B --> B2[SQLMap]
-
-    C --> C1[Ghidra]
-    C --> C2[Radare2]
-
-    D --> D1[Nmap]
-    D --> D2[Netcat]
-
-    E --> E1[Hydra]
-    E --> E2[John the Ripper]
-```
-</details>
-
-<div align="center">
-  <a href="assets/PACKAGES.md">
-    <img src="https://img.shields.io/badge/📦-Browse_All_220%2B_Packages-2ea44f?style=for-the-badge" alt="Browse All Packages">
-  </a>
-</div>
-
-## 🧠 AI Agents
-
-| Tool | Description |
-| :--- | :--- |
-| **opencode** | AI-powered coding assistant |
-| **claude-code** | AI-powered coding assistant by Anthropic |
-| **antigravity-cli** | AI coding assistant (glibc wrapper) |
-| **copilot-cli** | GitHub Copilot CLI — AI-powered assistance in your terminal |
-| **codex-cli** | Codex CLI by OpenAI — lightweight AI-powered coding agent in your terminal |
-| **mimocode** | Autonomous AI engineer — creates, modifies, tests, deploys code |
-| **openclaude** | Open-source coding-agent CLI for cloud & local LLMs |
-| **hermes-agent** | AI-powered coding assistant and workflow automation tool |
-| **kimi-code** | AI-powered coding assistant for the terminal by Moonshot AI |
-| **mmx-cli** | CLI tool for MiniMax AI – chat, completion, and image generation from the terminal |
-
-## Legal & Disclaimer
-
-These tools are provided for **educational and authorized security research only**. You are responsible for ensuring your use complies with all applicable laws and regulations. Unauthorized access to systems you do not own or lack explicit permission to test is illegal. The maintainers assume no responsibility for any misuse.
-
-## ❓ Frequently Asked Questions
-
-<details>
-<summary><b>Are these tools safe to use on a personal device?</b></summary>
-<br>
-Yes, all packages are built from source directly on your device during installation. This means no pre-compiled binaries are shipped — each tool is compiled and installed for your specific Termux environment. However, these are powerful security tools; ensure you understand what a tool does before executing it to avoid unintended system modifications.
-</details>
-
-<details>
-<summary><b>Are these tools legal to use?</b></summary>
-<br>
-All tools are for <strong>legal security research and ethical hacking purposes only</strong>. Always obtain proper authorization before testing systems you do not own.
-</details>
-
-<details>
-<summary><b>Why aren't these in the official repo?</b></summary>
-<br>
-Many of these tools (like Metasploit or Ghidra) have heavy dependencies, large sizes, or licensing complexities that make them difficult to maintain in the official core repositories. We handle the heavy lifting so you don't have to.
-</details>
-
-<details>
-<summary><b>How often are tools updated?</b></summary>
-<br>
-- Security patches within 24 hours
-- Version updates every Sunday
-- Emergency fixes as needed
-</details>
-
-<details>
-<summary><b>How do I request a new package?</b></summary>
-<br>
-We are constantly expanding. You can request new tools via:
-
-1. Opening a **[GitHub Issue](https://github.com/zarifsikder/BanglaCLI/issues)**
-2. Contacting us on Telegram: **[Telegram @nullxvoid](https://telegram.me/nullxvoid)**
-3. Sending an email to: **[BanglaCLI@gmail.com](mailto:BanglaCLI@gmail.com)**
-</details>
-
-<details>
-<summary><b>How do I report a broken package?</b></summary>
-<br>
-Open an issue on **[GitHub](https://github.com/zarifsikder/BanglaCLI/issues)** with the tool name and error output. We aim to fix reported issues within 24 hours.
-</details>
-
-<details>
-<summary><b>How do I uninstall the BanglaCLI repository?</b></summary>
-<br>
-To remove the repository from your Termux environment:
-
-```bash
-curl -sL https://github.com/zarifsikder/BanglaCLI/raw/main/uninstall.sh | bash
-```
-
-This removes the repository source and its GPG key, refreshes APT, and does not remove packages you have already installed.
-</details>
-
-<details>
-<summary><b>I get a "package not found" error — what should I do?</b></summary>
-<br>
-Ensure you have run `pkg update` after adding the repository. If the issue persists, try:
-
-```bash
-apt update
-pkg search <tool-name>
-```
-
-If the tool still doesn't appear, it may have a different package name — check the **[full package list](assets/PACKAGES.md)** for the exact name.
-</details>
-
-## 🌐 Support & Community
-
-Join our growing community of security researchers and mobile hackers.
-
-<div align="center">
-  <a href="https://telegram.me/nullxvoid">
-    <img src="https://img.shields.io/badge/Telegram-Join_Group-2CA5E0?style=for-the-badge&logo=telegram" alt="Telegram">
-  </a>
-  <a href="https://youtube.com/@alienkrishnorg">
-    <img src="https://img.shields.io/badge/YouTube-Tutorials-FF0000?style=for-the-badge&logo=youtube" alt="YouTube">
-  </a>
-  <a href="https://github.com/zarifsikder/BanglaCLI">
-    <img src="https://img.shields.io/badge/GitHub-Source_Code-181717?style=for-the-badge&logo=github" alt="GitHub">
-  </a>
-</div>
-
----
-
-## 🛠️ Contribution & Support
-
-Support the project to help us keep the packages updated and add more tools:
-
-- ⭐ **Star** this repository to show your support.
-- 🐛 **Report Bugs** responsibly via Issues.
-- 📢 **Share** with the security community.
-
-[View Complete Package List »](assets/PACKAGES.md)
-
-<div align="center">
-  <sub>Built with ❤️ for security researchers by <a href="https://github.com/Anon4You">Alienkrishn</a> | Built on-device for best compatibility</sub>
-</div>
+</body>
+</html>

@@ -1,4 +1,4 @@
-# Contributing to TermuxVoid
+# Contributing to BanglaCLI
 
 Thank you for your interest in adding a package. Before you start, make sure you understand the two core topics below. PRs may be closed without review if a submission shows these are missing.
 

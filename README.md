@@ -1,6 +1,6 @@
 <div align="center">
-  <a href="https://termuxvoid.github.io/">
-    <img alt="BanglaCLI" height="180" src="https://banglacli.edgeone.dev/file.png">
+  <img src="https://banglacli.edgeone.dev/file.png" alt="BanglaCLI" height="180">
+</div>
     <h1>BanglaCLI APT Repository</h1>
   </a>
   <p><b>Unofficial APT Repository: 220+ Ethical Hacking & Pentesting Packages</b></p>
@@ -91,42 +91,48 @@ Getting started is seamless. Run the following one-liner in your Termux terminal
 ```bash
 # Add repository
 curl -sL https://github.com/zarifsikder/BanglaCLI/raw/main/install.sh | bash
+```
 
-> [!WARNING] Piping a remote script directly to bash executes it immediately. For maximum transparency, download and inspect install.sh first, then run it locally.
+> [!WARNING]
+> Piping a remote script directly to `bash` executes it immediately. For maximum transparency, download and inspect `install.sh` first, then run it locally.
 
+Once the repository is added, you can install any tool using `pkg install`:
 
-
-Once the repository is added, you can install any tool using pkg install:
-
+```bash
 # Install any tool
 pkg install <tool-name>
 
 # Example
 pkg install metasploit-framework
+```
 
-> [!TIP] After installation, run pkg update to refresh your local package database. You can search for tools using pkg search <tool-name>.
+> [!TIP]
+> After installation, run `pkg update` to refresh your local package database. You can search for tools using `pkg search <tool-name>`.
 
+> [!NOTE]
+> Removing the BanglaCLI repository later does not remove packages you already installed. Use the package manager to remove individual packages; see the [uninstall instructions](#how-do-i-uninstall-the-BanglaCLI-repository) to remove only the repository source and key.
 
-
-> [!NOTE] Removing the BanglaCLI repository later does not remove packages you already installed. Use the package manager to remove individual packages; see the uninstall instructions to remove only the repository source and key.
-
-
-
-✨ Featured Tools
+## ✨ Featured Tools
 
 We provide a curated selection of industry-standard tools. Here are some highlights:
 
-<div align="center">Tool	Category	Description
+<div align="center">
 
-Metasploit Framework	Exploitation	The world's most used penetration testing framework.
-Burp Suite	Web Security	Leading toolkit for web application security testing.
-Ghidra	Reverse Eng.	NSA's high-end software reverse engineering suite.
-THC Hydra	Password Cracking	Fast network logon cracker supporting many protocols.
-SQLMap	Web Security	Automatic SQL injection and database takeover tool.
+| Tool | Category | Description |
+| :--- | :--- | :--- |
+| **Metasploit Framework** | `Exploitation` | The world's most used penetration testing framework. |
+| **Burp Suite** | `Web Security` | Leading toolkit for web application security testing. |
+| **Ghidra** | `Reverse Eng.` | NSA's high-end software reverse engineering suite. |
+| **THC Hydra** | `Password Cracking` | Fast network logon cracker supporting many protocols. |
+| **SQLMap** | `Web Security` | Automatic SQL injection and database takeover tool. |
 
+</div>
 
-</div><details>
-<summary><b>📊 View Mermaid Architecture</b></summary>graph TD
+<details>
+<summary><b>📊 View Mermaid Architecture</b></summary>
+
+```mermaid
+graph TD
     A[BanglaCLI Repo] -->|Provides| B[Exploitation]
     A -->|Provides| C[Reverse Engineering]
     A -->|Provides| D[Network Scanning]
@@ -143,84 +149,104 @@ SQLMap	Web Security	Automatic SQL injection and database takeover tool.
 
     E --> E1[Hydra]
     E --> E2[John the Ripper]
+```
+</details>
 
-</details><div align="center">
+<div align="center">
   <a href="assets/PACKAGES.md">
     <img src="https://img.shields.io/badge/📦-Browse_All_220%2B_Packages-2ea44f?style=for-the-badge" alt="Browse All Packages">
   </a>
-</div>🧠 AI Agents
+</div>
 
-Tool	Description
+## 🧠 AI Agents
 
-opencode	AI-powered coding assistant
-claude-code	AI-powered coding assistant by Anthropic
-antigravity-cli	AI coding assistant (glibc wrapper)
-copilot-cli	GitHub Copilot CLI — AI-powered assistance in your terminal
-codex-cli	Codex CLI by OpenAI — lightweight AI-powered coding agent in your terminal
-mimocode	Autonomous AI engineer — creates, modifies, tests, deploys code
-openclaude	Open-source coding-agent CLI for cloud & local LLMs
-hermes-agent	AI-powered coding assistant and workflow automation tool
-kimi-code	AI-powered coding assistant for the terminal by Moonshot AI
-mmx-cli	CLI tool for MiniMax AI – chat, completion, and image generation from the terminal
+| Tool | Description |
+| :--- | :--- |
+| **opencode** | AI-powered coding assistant |
+| **claude-code** | AI-powered coding assistant by Anthropic |
+| **antigravity-cli** | AI coding assistant (glibc wrapper) |
+| **copilot-cli** | GitHub Copilot CLI — AI-powered assistance in your terminal |
+| **codex-cli** | Codex CLI by OpenAI — lightweight AI-powered coding agent in your terminal |
+| **mimocode** | Autonomous AI engineer — creates, modifies, tests, deploys code |
+| **openclaude** | Open-source coding-agent CLI for cloud & local LLMs |
+| **hermes-agent** | AI-powered coding assistant and workflow automation tool |
+| **kimi-code** | AI-powered coding assistant for the terminal by Moonshot AI |
+| **mmx-cli** | CLI tool for MiniMax AI – chat, completion, and image generation from the terminal |
 
+## Legal & Disclaimer
 
-Legal & Disclaimer
+These tools are provided for **educational and authorized security research only**. You are responsible for ensuring your use complies with all applicable laws and regulations. Unauthorized access to systems you do not own or lack explicit permission to test is illegal. The maintainers assume no responsibility for any misuse.
 
-These tools are provided for educational and authorized security research only. You are responsible for ensuring your use complies with all applicable laws and regulations. Unauthorized access to systems you do not own or lack explicit permission to test is illegal. The maintainers assume no responsibility for any misuse.
-
-❓ Frequently Asked Questions
+## ❓ Frequently Asked Questions
 
 <details>
 <summary><b>Are these tools safe to use on a personal device?</b></summary>
 <br>
 Yes, all packages are built from source directly on your device during installation. This means no pre-compiled binaries are shipped — each tool is compiled and installed for your specific Termux environment. However, these are powerful security tools; ensure you understand what a tool does before executing it to avoid unintended system modifications.
-</details><details>
+</details>
+
+<details>
 <summary><b>Are these tools legal to use?</b></summary>
 <br>
 All tools are for <strong>legal security research and ethical hacking purposes only</strong>. Always obtain proper authorization before testing systems you do not own.
-</details><details>
+</details>
+
+<details>
 <summary><b>Why aren't these in the official repo?</b></summary>
 <br>
 Many of these tools (like Metasploit or Ghidra) have heavy dependencies, large sizes, or licensing complexities that make them difficult to maintain in the official core repositories. We handle the heavy lifting so you don't have to.
-</details><details>
+</details>
+
+<details>
 <summary><b>How often are tools updated?</b></summary>
 <br>
 - Security patches within 24 hours
 - Version updates every Sunday
 - Emergency fixes as needed
-</details><details>
+</details>
+
+<details>
 <summary><b>How do I request a new package?</b></summary>
 <br>
-We are constantly expanding. You can request new tools via:1. Opening a GitHub Issue
+We are constantly expanding. You can request new tools via:
 
+1. Opening a **[GitHub Issue](https://github.com/zarifsikder/BanglaCLI/issues)**
+2. Contacting us on Telegram: **[Telegram @nullxvoid](https://telegram.me/nullxvoid)**
+3. Sending an email to: **[BanglaCLI@gmail.com](mailto:BanglaCLI@gmail.com)**
+</details>
 
-2. Contacting us on Telegram: Telegram @nullxvoid
-
-
-3. Sending an email to: BanglaCLI@gmail.com
-
-
-
-</details><details>
+<details>
 <summary><b>How do I report a broken package?</b></summary>
 <br>
 Open an issue on **[GitHub](https://github.com/zarifsikder/BanglaCLI/issues)** with the tool name and error output. We aim to fix reported issues within 24 hours.
-</details><details>
+</details>
+
+<details>
 <summary><b>How do I uninstall the BanglaCLI repository?</b></summary>
 <br>
-To remove the repository from your Termux environment:curl -sL https://github.com/zarifsikder/BanglaCLI/raw/main/uninstall.sh | bash
+To remove the repository from your Termux environment:
+
+```bash
+curl -sL https://github.com/zarifsikder/BanglaCLI/raw/main/uninstall.sh | bash
+```
 
 This removes the repository source and its GPG key, refreshes APT, and does not remove packages you have already installed.
+</details>
 
-</details><details>
+<details>
 <summary><b>I get a "package not found" error — what should I do?</b></summary>
 <br>
-Ensure you have run `pkg update` after adding the repository. If the issue persists, try:apt update
+Ensure you have run `pkg update` after adding the repository. If the issue persists, try:
+
+```bash
+apt update
 pkg search <tool-name>
+```
 
-If the tool still doesn't appear, it may have a different package name — check the full package list for the exact name.
+If the tool still doesn't appear, it may have a different package name — check the **[full package list](assets/PACKAGES.md)** for the exact name.
+</details>
 
-</details>🌐 Support & Community
+## 🌐 Support & Community
 
 Join our growing community of security researchers and mobile hackers.
 
@@ -228,23 +254,29 @@ Join our growing community of security researchers and mobile hackers.
   <a href="https://telegram.me/nullxvoid">
     <img src="https://img.shields.io/badge/Telegram-Join_Group-2CA5E0?style=for-the-badge&logo=telegram" alt="Telegram">
   </a>
+  <a href="https://youtube.com/@alienkrishnorg">
+    <img src="https://img.shields.io/badge/YouTube-Tutorials-FF0000?style=for-the-badge&logo=youtube" alt="YouTube">
+  </a>
+  <a href="https://github.com/zarifsikder/BanglaCLI">
+    <img src="https://img.shields.io/badge/GitHub-Source_Code-181717?style=for-the-badge&logo=github" alt="GitHub">
+  </a>
 </div>
+
 ---
 
-🛠️ Contribution & Support
+## 🛠️ Contribution & Support
 
 Support the project to help us keep the packages updated and add more tools:
 
-⭐ Star this repository to show your support.
+- ⭐ **Star** this repository to show your support.
+- 🐛 **Report Bugs** responsibly via Issues.
+- 📢 **Share** with the security community.
 
-🐛 Report Bugs responsibly via Issues.
-
-📢 Share with the security community.
-
-
-View Complete Package List »
+[View Complete Package List »](assets/PACKAGES.md)
 
 <div align="center">
   <sub>Built with ❤️ for security researchers by <a href="https://github.com/Anon4You">Alienkrishn</a> | Built on-device for best compatibility</sub>
 </div>
-```
+
+
+এই খানে Support & Community তে Only Telegram থাকবে আর বাদ বাকি গুলো Delete করে দাও আর এই code এ BanglaCLI APT Repository লেখার ওপরে জে image আছে ওইটার পরি বর্তে https://banglacli.edgeone.dev/file.png এইটা দেখাবে

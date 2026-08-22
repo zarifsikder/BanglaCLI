@@ -271,6 +271,3 @@ Support the project to help us keep the packages updated and add more tools:
 <div align="center">
   <sub>Built with ❤️ for security researchers by <a href="https://github.com/Anon4You">Alienkrishn</a> | Built on-device for best compatibility</sub>
 </div>
-
-
-এই খানে Support & Community তে Only Telegram থাকবে আর বাদ বাকি গুলো Delete করে দাও আর এই code এ BanglaCLI APT Repository লেখার ওপরে জে image আছে ওইটার পরি বর্তে https://banglacli.edgeone.dev/file.png এইটা দেখাবে

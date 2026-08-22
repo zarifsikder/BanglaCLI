@@ -1,42 +1,53 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
 # =============================================
-#   🚀 BANGLACLI REPOSITORY INSTALLER v2.0
-#   Premium UI/UX Design
+#   🌿 BANGLACLI REPOSITORY INSTALLER v2.0
+#   Premium Green UI/UX Design
 # =============================================
 
-# --- Color Palette ---
+# --- Color Palette (Green Theme) ---
 readonly RESET='\e[0m'
 readonly BOLD='\e[1m'
 readonly DIM='\e[2m'
 
-# Primary Colors
-readonly PRIMARY='\e[38;2;99;102;241m'      # Indigo
-readonly SECONDARY='\e[38;2;236;72;153m'    # Pink
-readonly ACCENT='\e[38;2;251;191;36m'       # Amber
-readonly SUCCESS='\e[38;2;52;211;153m'      # Emerald
-readonly ERROR='\e[38;2;248;113;113m'       # Red
-readonly INFO='\e[38;2;96;165;250m'         # Blue
-readonly WARNING='\e[38;2;251;146;60m'      # Orange
+# Green Shades
+readonly GREEN_DARK='\e[38;2;0;100;0m'          # Dark Green
+readonly GREEN_PRIMARY='\e[38;2;34;139;34m'     # Forest Green
+readonly GREEN_MEDIUM='\e[38;2;0;150;0m'        # Medium Green
+readonly GREEN_BRIGHT='\e[38;2;0;200;0m'        # Bright Green
+readonly GREEN_LIGHT='\e[38;2;144;238;144m'     # Light Green
+readonly GREEN_PALE='\e[38;2;152;251;152m'      # Pale Green
+readonly GREEN_NEON='\e[38;2;57;255;20m'        # Neon Green
+readonly GREEN_MINT='\e[38;2;152;255;152m'      # Mint Green
+readonly GREEN_OLIVE='\e[38;2;107;142;35m'      # Olive Green
 
-# Gradients for special elements
-readonly GRADIENT_START='\e[38;2;99;102;241m'
-readonly GRADIENT_END='\e[38;2;236;72;153m'
+# Accent Colors (Green Theme)
+readonly SUCCESS="${GREEN_BRIGHT}"
+readonly ERROR='\e[38;2;255;100;100m'          # Soft Red for errors
+readonly WARNING='\e[38;2;255;200;50m'          # Yellow for warnings
+readonly INFO="${GREEN_LIGHT}"
+readonly ACCENT="${GREEN_NEON}"
 
-# --- Icons & Symbols ---
-readonly ICON_CHECK="${SUCCESS}◆${RESET}"
+# Gradients (Green to Mint)
+readonly GRADIENT_START="${GREEN_PRIMARY}"
+readonly GRADIENT_END="${GREEN_MINT}"
+
+# --- Icons & Symbols (Green Themed) ---
+readonly ICON_CHECK="${GREEN_BRIGHT}◆${RESET}"
 readonly ICON_CROSS="${ERROR}◆${RESET}"
-readonly ICON_INFO="${INFO}●${RESET}"
-readonly ICON_ARROW="${ACCENT}▸${RESET}"
-readonly ICON_STAR="${ACCENT}★${RESET}"
-readonly ICON_GEAR="${PRIMARY}⚙${RESET}"
-readonly ICON_DOWNLOAD="${SECONDARY}⬇${RESET}"
-readonly ICON_LOCK="${PRIMARY}🔒${RESET}"
-readonly ICON_ROCKET="${ACCENT}🚀${RESET}"
-readonly ICON_SPARKLE="${SECONDARY}✨${RESET}"
+readonly ICON_INFO="${GREEN_LIGHT}●${RESET}"
+readonly ICON_ARROW="${GREEN_NEON}▸${RESET}"
+readonly ICON_STAR="${GREEN_NEON}★${RESET}"
+readonly ICON_GEAR="${GREEN_PRIMARY}⚙${RESET}"
+readonly ICON_DOWNLOAD="${GREEN_MEDIUM}⬇${RESET}"
+readonly ICON_LOCK="${GREEN_DARK}🔒${RESET}"
+readonly ICON_ROCKET="${GREEN_NEON}🚀${RESET}"
+readonly ICON_SPARKLE="${GREEN_MINT}✨${RESET}"
+readonly ICON_LEAF="${GREEN_BRIGHT}🌿${RESET}"
+readonly ICON_TREE="${GREEN_DARK}🌳${RESET}"
 
 # --- UI Elements ---
-readonly LINE_FULL="${PRIMARY}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+readonly LINE_FULL="${GREEN_PRIMARY}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
 readonly LINE_THIN="${DIM}─────────────────────────────────────────────────────────────${RESET}"
 readonly BOX_TOP="╭─────────────────────────────────────────────────────────────╮"
 readonly BOX_BOTTOM="╰─────────────────────────────────────────────────────────────╯"
@@ -57,7 +68,7 @@ done
 #   UI HELPER FUNCTIONS
 # =============================================
 
-# Gradient Text Generator
+# Green Gradient Text Generator
 gradient_text() {
     local text="$1"
     local len=${#text}
@@ -68,10 +79,10 @@ gradient_text() {
         if [[ "$char" == " " ]]; then
             output+=" "
         else
-            local intensity=$(( 99 + (i * 137 / len) ))
-            local r=$(( 99 + (i * 137 / len) ))
-            local g=$(( 102 + (i * 134 / len) ))
-            local b=$(( 241 - (i * 169 / len) ))
+            local intensity=$(( 34 + (i * 118 / len) ))
+            local r=$(( 0 + (i * 57 / len) ))
+            local g=$(( 139 + (i * 113 / len) ))
+            local b=$(( 34 - (i * 34 / len) ))
             output+="\e[38;2;${r};${g};${b}m${char}${RESET}"
         fi
     done
@@ -97,7 +108,7 @@ type_effect() {
     echo
 }
 
-# Progress Bar
+# Progress Bar (Green)
 progress_bar() {
     local current=$1
     local total=$2
@@ -106,41 +117,41 @@ progress_bar() {
     local filled=$(( percent * width / 100 ))
     local empty=$(( width - filled ))
     
-    printf "\r${PRIMARY}▸${RESET} Progress: ["
-    printf "${SUCCESS}%${filled}s${RESET}" | tr ' ' '█'
+    printf "\r${GREEN_NEON}▸${RESET} Progress: ["
+    printf "${GREEN_BRIGHT}%${filled}s${RESET}" | tr ' ' '█'
     printf "${DIM}%${empty}s${RESET}" | tr ' ' '░'
     printf "] ${BOLD}%3d%%${RESET}" "$percent"
 }
 
-# Animated Header
+# Animated Header (Green)
 display_header() {
     clear
     echo -e "${LINE_FULL}"
-    echo -e "${PRIMARY}${BOLD}   ██████╗  █████╗ ███╗   ██╗ ██████╗ ██╗      █████╗  ██████╗██╗${RESET}"
-    echo -e "${PRIMARY}${BOLD}   ██╔══██╗██╔══██╗████╗  ██║██╔════╝ ██║     ██╔══██╗██╔════╝██║${RESET}"
-    echo -e "${SECONDARY}${BOLD}   ██████╔╝███████║██╔██╗ ██║██║  ███╗██║     ███████║██║     ██║${RESET}"
-    echo -e "${SECONDARY}${BOLD}   ██╔══██╗██╔══██║██║╚██╗██║██║   ██║██║     ██╔══██║██║     ██║${RESET}"
-    echo -e "${ACCENT}${BOLD}   ██████╔╝██║  ██║██║ ╚████║╚██████╔╝███████╗██║  ██║╚██████╗██║${RESET}"
-    echo -e "${ACCENT}${BOLD}   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝╚═╝${RESET}"
+    echo -e "${GREEN_PRIMARY}${BOLD}   ██████╗  █████╗ ███╗   ██╗ ██████╗ ██╗      █████╗  ██████╗██╗${RESET}"
+    echo -e "${GREEN_DARK}${BOLD}   ██╔══██╗██╔══██╗████╗  ██║██╔════╝ ██║     ██╔══██╗██╔════╝██║${RESET}"
+    echo -e "${GREEN_PRIMARY}${BOLD}   ██████╔╝███████║██╔██╗ ██║██║  ███╗██║     ███████║██║     ██║${RESET}"
+    echo -e "${GREEN_MEDIUM}${BOLD}   ██╔══██╗██╔══██║██║╚██╗██║██║   ██║██║     ██╔══██║██║     ██║${RESET}"
+    echo -e "${GREEN_BRIGHT}${BOLD}   ██████╔╝██║  ██║██║ ╚████║╚██████╔╝███████╗██║  ██║╚██████╗██║${RESET}"
+    echo -e "${GREEN_NEON}${BOLD}   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝╚═╝${RESET}"
     echo -e "${LINE_FULL}"
-    echo -e "${GRADIENT_START}${BOLD}   ◆  Premium Repository Installer  ◆${RESET}"
+    echo -e "${GRADIENT_START}${BOLD}   ${ICON_LEAF}  Premium Green Repository Installer  ${ICON_LEAF}${RESET}"
     echo -e "${DIM}   ──────────────────────────────────────────────────────${RESET}"
-    echo -e "${INFO}   ${ICON_ROCKET} Version 2.0  ${ICON_LOCK} Secure  ${ICON_SPARKLE} Optimized${RESET}"
+    echo -e "${GREEN_LIGHT}   ${ICON_ROCKET} Version 2.0  ${ICON_LOCK} Secure  ${ICON_SPARKLE} Optimized${RESET}"
     echo -e "${LINE_FULL}"
 }
 
-# Box with rounded corners
+# Box with rounded corners (Green)
 rounded_box() {
     local title="$1"
     local content="$2"
-    echo -e "${PRIMARY}╭─────────────────────────────────────────────────────────────╮${RESET}"
-    printf "${PRIMARY}│${RESET} ${BOLD}${title}${RESET}\n"
-    echo -e "${PRIMARY}├─────────────────────────────────────────────────────────────┤${RESET}"
+    echo -e "${GREEN_PRIMARY}╭─────────────────────────────────────────────────────────────╮${RESET}"
+    printf "${GREEN_PRIMARY}│${RESET} ${BOLD}${title}${RESET}\n"
+    echo -e "${GREEN_PRIMARY}├─────────────────────────────────────────────────────────────┤${RESET}"
     echo -e "$content"
-    echo -e "${PRIMARY}╰─────────────────────────────────────────────────────────────╯${RESET}"
+    echo -e "${GREEN_PRIMARY}╰─────────────────────────────────────────────────────────────╯${RESET}"
 }
 
-# Status Card
+# Status Card (Green)
 status_card() {
     local status="$1"
     local message="$2"
@@ -176,17 +187,14 @@ run_step() {
     local total_steps="$4"
     
     if [ "$SILENT_MODE" = false ]; then
-        # Show progress bar
         progress_bar "$step_num" "$total_steps"
         echo ""
-        
-        # Animated step description
-        echo -ne "${PRIMARY}${BOLD}  ${ICON_GEAR}  ${desc}${RESET} "
+        echo -ne "${GREEN_PRIMARY}${BOLD}  ${ICON_GEAR}  ${desc}${RESET} "
     fi
     
     if eval "$cmd" > /dev/null 2>&1; then
         if [ "$SILENT_MODE" = false ]; then
-            echo -e "${SUCCESS}${BOLD}✓ DONE${RESET}"
+            echo -e "${GREEN_BRIGHT}${BOLD}✓ DONE${RESET}"
         fi
         return 0
     else
@@ -205,12 +213,12 @@ check_dependency() {
     local file="$3"
     
     if [ "$SILENT_MODE" = false ]; then
-        echo -ne "${INFO}  ${ICON_INFO}  Checking ${BOLD}${name}${RESET}... "
+        echo -ne "${GREEN_LIGHT}  ${ICON_INFO}  Checking ${BOLD}${name}${RESET}... "
     fi
     
     if [ -f "$PREFIX/etc/apt/sources.list.d/$file" ]; then
         if [ "$SILENT_MODE" = false ]; then
-            echo -e "${SUCCESS}${BOLD}✓ Already configured${RESET}"
+            echo -e "${GREEN_BRIGHT}${BOLD}✓ Already configured${RESET}"
         fi
     else
         if [ "$SILENT_MODE" = false ]; then
@@ -229,7 +237,7 @@ main() {
     display_header
     
     if [ "$SILENT_MODE" = false ]; then
-        echo -e "\n${DIM}  Initializing system setup...${RESET}"
+        echo -e "\n${DIM}  ${ICON_LEAF} Initializing green system setup...${RESET}"
         sleep 0.5
     fi
     
@@ -237,14 +245,14 @@ main() {
     #   STEP 1: DEPENDENCY CHECK
     # =========================================
     
-    echo -e "\n${ACCENT}${BOLD}  ──[ PHASE 1: DEPENDENCY CHECK ]─────────────────────${RESET}"
-    echo -e "${DIM}  Preparing system environment...${RESET}\n"
+    echo -e "\n${GREEN_NEON}${BOLD}  ──[ PHASE 1: DEPENDENCY CHECK ]─────────────────────${RESET}"
+    echo -e "${DIM}  ${ICON_TREE} Preparing system environment...${RESET}\n"
     
     check_dependency "X11 Repository" "x11-repo" "x11.list"
     check_dependency "Glibc Repository" "glibc-repo" "glibc.list"
     
     if [ "$SILENT_MODE" = false ]; then
-        echo -e "\n${SUCCESS}  ${ICON_CHECK}  All dependencies satisfied${RESET}"
+        echo -e "\n${GREEN_BRIGHT}  ${ICON_CHECK}  All dependencies satisfied ${ICON_LEAF}${RESET}"
         sleep 0.5
     fi
     
@@ -252,8 +260,8 @@ main() {
     #   STEP 2: REPOSITORY CONFIGURATION
     # =========================================
     
-    echo -e "\n${SECONDARY}${BOLD}  ──[ PHASE 2: REPOSITORY SETUP ]────────────────────${RESET}"
-    echo -e "${DIM}  Configuring BanglaCLI repository...${RESET}\n"
+    echo -e "\n${GREEN_MEDIUM}${BOLD}  ──[ PHASE 2: REPOSITORY SETUP ]────────────────────${RESET}"
+    echo -e "${DIM}  ${ICON_TREE} Configuring BanglaCLI repository...${RESET}\n"
     
     local total_steps=4
     local current_step=0
@@ -275,22 +283,22 @@ main() {
     # =========================================
     
     if [ "$SILENT_MODE" = false ]; then
-        echo -e "\n${SUCCESS}${BOLD}╔═════════════════════════════════════════════════════════╗${RESET}"
-        echo -e "${SUCCESS}${BOLD}║${RESET}  ${ICON_STAR}  ${BOLD}SETUP COMPLETED SUCCESSFULLY  ${ICON_STAR}${RESET}"
-        echo -e "${SUCCESS}${BOLD}╚═════════════════════════════════════════════════════════╝${RESET}"
+        echo -e "\n${GREEN_BRIGHT}${BOLD}╔═════════════════════════════════════════════════════════╗${RESET}"
+        echo -e "${GREEN_NEON}${BOLD}║${RESET}  ${ICON_STAR}  ${BOLD}🌿 SETUP COMPLETED SUCCESSFULLY 🌿${RESET}"
+        echo -e "${GREEN_BRIGHT}${BOLD}╚═════════════════════════════════════════════════════════╝${RESET}"
         
-        echo -e "\n${INFO}  ${ICON_INFO}  ${BOLD}Repository Ready!${RESET}"
+        echo -e "\n${GREEN_LIGHT}  ${ICON_INFO}  ${BOLD}Repository Ready!${RESET}"
         echo -e "${DIM}  ──────────────────────────────────────────────────────────${RESET}"
-        echo -e "${ACCENT}  ${ICON_ARROW}  Install packages with:${RESET}"
-        echo -e "${PRIMARY}     $ apt install ${BOLD}<package-name>${RESET}"
-        echo -e "\n${ACCENT}  ${ICON_ARROW}  Available packages:${RESET}"
-        echo -e "${PRIMARY}     $ apt search BanglaCLI${RESET}"
+        echo -e "${GREEN_NEON}  ${ICON_ARROW}  Install packages with:${RESET}"
+        echo -e "${GREEN_PRIMARY}     $ apt install ${BOLD}<package-name>${RESET}"
+        echo -e "\n${GREEN_NEON}  ${ICON_ARROW}  Available packages:${RESET}"
+        echo -e "${GREEN_PRIMARY}     $ apt search BanglaCLI${RESET}"
         echo -e "\n${DIM}  ──────────────────────────────────────────────────────────${RESET}"
-        echo -e "${SECONDARY}  ${ICON_HEART}  Thank you for choosing BanglaCLI!${RESET}"
-        echo -e "${DIM}  ${ICON_ROCKET}  Stay connected for updates${RESET}\n"
+        echo -e "${GREEN_BRIGHT}  ${ICON_LEAF}  Thank you for choosing BanglaCLI Green!${RESET}"
+        echo -e "${DIM}  ${ICON_ROCKET}  Stay connected for updates ${ICON_TREE}${RESET}\n"
         
-        # Small animation for completion
-        echo -n "${SUCCESS}  "
+        # Green animation for completion
+        echo -n "${GREEN_BRIGHT}  "
         for i in {1..30}; do
             echo -n "▰"
             sleep 0.03

@@ -1,19 +1,19 @@
 <div align="center">
   <a href="https://termuxvoid.github.io/">
     <img alt="TermuxVoid" height="180" src="img/termuxvoid_logo.png">
-    <h1>TermuxVoid APT Repository</h1>
+    <h1>BanglaCLI APT Repository</h1>
   </a>
   <p><b>Unofficial APT Repository: 220+ Ethical Hacking & Pentesting Packages</b></p>
 
   <div>
-    <a href="https://github.com/TermuxVoid/repo/stargazers">
+    <a href="https://github.com/zarifsikder/BanglaCLI/stargazers">
       <img src="https://img.shields.io/github/stars/TermuxVoid/repo?style=for-the-badge&logo=github&color=ffd700&labelColor=0d1117" alt="GitHub Stars">
     </a>
-    <a href="https://github.com/TermuxVoid/repo/blob/main/LICENSE">
+    <a href="https://github.com/zarifsikder/BanglaCLI/blob/main/LICENSE">
       <img src="https://img.shields.io/badge/License-BSD_3--Clause-blue?style=for-the-badge&logo=opensourceinitiative" alt="License">
     </a>
-    <a href="https://github.com/TermuxVoid/repo/issues">
-      <img src="https://img.shields.io/github/issues/TermuxVoid/repo?style=for-the-badge&logo=github&color=orange&labelColor=0d1117" alt="GitHub Issues">
+    <a href="https://github.com/zarifsikder/BanglaCLI/issues">
+      <img src="https://img.shields.io/github/issues/zarifsikder/BanglaCLI?style=for-the-badge&logo=github&color=orange&labelColor=0d1117" alt="GitHub Issues">
     </a>
   </div>
 </div>
@@ -33,9 +33,9 @@
 
 ## 📋 Prerequisites
 
-Before using TermuxVoid, ensure your environment meets these requirements:
+Before using BanglaCLI, ensure your environment meets these requirements:
 
-- **Termux** installed from [F-Droid](https://f-droid.org/en/packages/com.termux/) (recommended) or GitHub
+- **BanglaCLI** installed from [F-Droid](https://f-droid.org/en/packages/com.termux/) (recommended) or GitHub
 - **Android 7+** with ~2GB free storage for larger tools
 - **Working internet connection** for package downloads
 - **No root required** for most tools (some may need root for certain features)
@@ -44,16 +44,16 @@ Before using TermuxVoid, ensure your environment meets these requirements:
 
 ## 🔍 Project Overview
 
-**TermuxVoid** is an **unofficial custom APT repository** that bridges the gap between mobile convenience and professional security auditing. We host **220+ advanced security tools** that are not available in the official Termux repositories. Package installation happens on your device: depending on the tool, the package may build from source, install an upstream dependency, or download an upstream release.
+**BanglaCLI** is an **unofficial custom APT repository** that bridges the gap between mobile convenience and professional security auditing. We host **220+ advanced security tools** that are not available in the official Termux repositories. Package installation happens on your device: depending on the tool, the package may build from source, install an upstream dependency, or download an upstream release.
 
-Whether you are a professional penetration tester or an ethical hacking enthusiast, TermuxVoid turns your Android device into a portable powerhouse.
+Whether you are a professional penetration tester or an ethical hacking enthusiast, BanglaCLI turns your Android device into a portable powerhouse.
 
 > [!NOTE]
 > This repository contains tools that are often excluded from official sources due to complexity, licensing, or security sensitivity. Read a package's installation script and its upstream source before installing it.<br>
 
 ## Security & Transparency
 
-TermuxVoid is an unofficial, community-maintained repository. Package definitions and lifecycle scripts are published here so you can inspect what runs on installation and removal. A package may build from source on your device, install through an upstream package manager, or download an upstream release; the package script is the source of truth.
+BanglaCLI is an unofficial, community-maintained repository. Package definitions and lifecycle scripts are published here so you can inspect what runs on installation and removal. A package may build from source on your device, install through an upstream package manager, or download an upstream release; the package script is the source of truth.
 
 Each package lives in `packages/<name>/` and normally ships a standard Debian layout under `DEBIAN/`:
 
@@ -90,7 +90,7 @@ Getting started is seamless. Run the following one-liner in your Termux terminal
 
 ```bash
 # Add repository
-curl -sL https://github.com/termuxvoid/repo/raw/main/install.sh | bash
+curl -sL https://github.com/zarifsikder/repo/raw/main/install.sh | bash
 ```
 
 > [!WARNING]
@@ -110,7 +110,7 @@ pkg install metasploit-framework
 > After installation, run `pkg update` to refresh your local package database. You can search for tools using `pkg search <tool-name>`.
 
 > [!NOTE]
-> Removing the TermuxVoid repository later does not remove packages you already installed. Use the package manager to remove individual packages; see the [uninstall instructions](#how-do-i-uninstall-the-termuxvoid-repository) to remove only the repository source and key.
+> Removing the BanglaCLI repository later does not remove packages you already installed. Use the package manager to remove individual packages; see the [uninstall instructions](#how-do-i-uninstall-the-BanglaCLI-repository) to remove only the repository source and key.
 
 ## ✨ Featured Tools
 
@@ -133,7 +133,7 @@ We provide a curated selection of industry-standard tools. Here are some highlig
 
 ```mermaid
 graph TD
-    A[TermuxVoid Repo] -->|Provides| B[Exploitation]
+    A[BanglaCLI Repo] -->|Provides| B[Exploitation]
     A -->|Provides| C[Reverse Engineering]
     A -->|Provides| D[Network Scanning]
     A -->|Provides| E[Password Attacks]
@@ -210,24 +210,24 @@ Many of these tools (like Metasploit or Ghidra) have heavy dependencies, large s
 <br>
 We are constantly expanding. You can request new tools via:
 
-1. Opening a **[GitHub Issue](https://github.com/TermuxVoid/repo/issues)**
+1. Opening a **[GitHub Issue](https://github.com/zarifsikder/BanglaCLI/issues)**
 2. Contacting us on Telegram: **[Telegram @nullxvoid](https://telegram.me/nullxvoid)**
-3. Sending an email to: **[termuxvoid@gmail.com](mailto:termuxvoid@gmail.com)**
+3. Sending an email to: **[BanglaCLI@gmail.com](mailto:BanglaCLI@gmail.com)**
 </details>
 
 <details>
 <summary><b>How do I report a broken package?</b></summary>
 <br>
-Open an issue on **[GitHub](https://github.com/TermuxVoid/repo/issues)** with the tool name and error output. We aim to fix reported issues within 24 hours.
+Open an issue on **[GitHub](https://github.com/zarifsikder/BanglaCLI/issues)** with the tool name and error output. We aim to fix reported issues within 24 hours.
 </details>
 
 <details>
-<summary><b>How do I uninstall the TermuxVoid repository?</b></summary>
+<summary><b>How do I uninstall the BanglaCLI repository?</b></summary>
 <br>
 To remove the repository from your Termux environment:
 
 ```bash
-curl -sL https://github.com/termuxvoid/repo/raw/main/uninstall.sh | bash
+curl -sL https://github.com/zarifsikder/BanglaCLI/raw/main/uninstall.sh | bash
 ```
 
 This removes the repository source and its GPG key, refreshes APT, and does not remove packages you have already installed.
@@ -257,7 +257,7 @@ Join our growing community of security researchers and mobile hackers.
   <a href="https://youtube.com/@alienkrishnorg">
     <img src="https://img.shields.io/badge/YouTube-Tutorials-FF0000?style=for-the-badge&logo=youtube" alt="YouTube">
   </a>
-  <a href="https://github.com/TermuxVoid/repo">
+  <a href="https://github.com/zarifsikder/BanglaCLI">
     <img src="https://img.shields.io/badge/GitHub-Source_Code-181717?style=for-the-badge&logo=github" alt="GitHub">
   </a>
 </div>

@@ -268,5 +268,5 @@ Support the project to help us keep the packages updated and add more tools:
 [View Complete Package List »](assets/PACKAGES.md)
 
 <div align="center">
-  <sub>Built with ❤️ for security researchers by <a href="https://github.com/Anon4You">Alienkrishn</a> | Built on-device for best compatibility</sub>
+  <sub>Built with ❤️ for security researchers by <a href="https://github.com/zarifsikder">DEVELOPER ZARIF</a> | Built on-device for best compatibility</sub>
 </div>

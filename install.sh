@@ -1,129 +1,123 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-GREEN="\e[32m"
-RED="\e[31m"
-YELLOW="\e[33m"
-BLUE="\e[34m"
-CYAN="\e[36m"
-MAGENTA="\e[35m"
-RESET="\e[0m"
-CHECK="✅"
-CROSS="❌"
-INFO=">> "
-WARN="❗"
+# --- Color Definitions ---
+G='\e[1;32m' # Green
+R='\e[1;31m' # Red
+Y='\e[1;33m' # Yellow
+B='\e[1;34m' # Blue
+C='\e[1;36m' # Cyan
+M='\e[1;35m' # Magenta
+W='\e[1;37m' # White
+RESET='\e[0m'
+
+# --- Icons ---
+CHECK="${G}✔${RESET}"
+CROSS="${R}✘${RESET}"
+INFO="${C}ⓘ${RESET}"
+ARROW="${Y}➜${RESET}"
+LINE="${B}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
 
 SILENT_MODE=false
 
+# --- Handle Options ---
 while getopts "s" opt; do
   case $opt in
     s) SILENT_MODE=true ;;
-    *) handle_error "Invalid option: -$OPTARG" ;;
+    *) echo "Invalid option"; exit 1 ;;
   esac
 done
 
+# --- UI Helper Functions ---
 print_header() {
-    echo -e "\n${BLUE}========================================${RESET}"
-    echo -e "$1"
-    echo -e "${BLUE}========================================${RESET}"
+    echo -e "${B}┌──────────────────────────────────────────────────┐${RESET}"
+    printf "${B}│${W}  %-48s ${B}│\n" "$1"
+    echo -e "${B}└──────────────────────────────────────────────────┘${RESET}"
+}
+
+display_logo() {
+    clear
+    echo -e "${C}"
+    echo -e "  ____                    _         ____ _     ___ "
+    echo -e " | __ )  __ _ _ __   __ _| | __ _  / ___| |   |_ _|"
+    echo -e " |  _ \ / _\` | '_ \ / _\` | |/ _\` || |   | |    | | "
+    echo -e " | |_) | (_| | | | | (_| | | (_| || |___| |___ | | "
+    echo -e " |____/ \__,_|_| |_|\__, |_|\__,_| \____|_____|___|"
+    echo -e "                    |___/                          "
+    echo -e "${RESET}"
+    echo -e "       ${M}⚡ BanglaCLI Repository Installer ⚡${RESET}"
+    echo -e "${LINE}"
 }
 
 handle_error() {
-    echo -e "\n${RED}${CROSS} Error: $1${RESET}"
+    echo -e "\n${R}${CROSS} Error: $1${RESET}"
     exit 1
 }
 
-run_command() {
-    local description="$1"
-    local command="$2"
+# Improved command runner with aligned status
+run_step() {
+    local desc="$1"
+    local cmd="$2"
 
     if [ "$SILENT_MODE" = false ]; then
-        echo -e "${YELLOW}${INFO} ${description}...${RESET}"
+        printf " ${ARROW} %-40s " "${desc}..."
     fi
 
-    if eval "$command" > /dev/null 2>&1; then
+    if eval "$cmd" > /dev/null 2>&1; then
         if [ "$SILENT_MODE" = false ]; then
-            echo -e "${GREEN}${CHECK} ${description} completed successfully!${RESET}"
+            echo -e "[  ${CHECK}  ]"
         fi
         return 0
     else
-        handle_error "Failed to ${description,,}"
+        if [ "$SILENT_MODE" = false ]; then
+            echo -e "[  ${CROSS}  ]"
+        fi
+        handle_error "Failed to ${desc,,}"
         return 1
     fi
 }
 
-display_logo() {
-    echo -e "${MAGENTA}"
-    echo -e " █▀▀▄ █▀▀█ █▀▀▄ █▀▀▀ █    █▀▀█ █▀▀ █   █ "
-    echo -e " █▀▀▄ █▄▄█ █  █ █ ▀█ █    █▄▄█ █   █   █ "
-    echo -e " ▀▀▀  ▀  ▀ ▀  ▀ ▀▀▀▀ ▀▀▀▀ ▀  ▀ ▀▀▀ ▀▀▀ ▀ "
-    echo -e "${RESET}"
-    echo -e "${CYAN}      BanglaCLI Repository Installer${RESET}"
-    echo -e ""
-}
+check_dependency_repo() {
+    local name=$1
+    local pkg=$2
+    local file=$3
 
-check_install_x11_repo() {
-    if [ -f "$PREFIX/etc/apt/sources.list.d/x11.list" ]; then
+    if [ -f "$PREFIX/etc/apt/sources.list.d/$file" ]; then
         if [ "$SILENT_MODE" = false ]; then
-            echo -e "${GREEN}${CHECK} X11 repository is already installed.${RESET}"
+            echo -e " ${CHECK} ${G}${name}${W} is already configured.${RESET}"
         fi
     else
-        if [ "$SILENT_MODE" = false ]; then
-            echo -e "${YELLOW}${INFO} X11 repository not found, installing...${RESET}"
-        fi
-        if apt install x11-repo -y > /dev/null 2>&1; then
-            if [ "$SILENT_MODE" = false ]; then
-                echo -e "${GREEN}${CHECK} X11 repository installed successfully!${RESET}"
-            fi
-        else
-            if [ "$SILENT_MODE" = false ]; then
-                echo -e "${YELLOW}${WARN} Failed to install X11 repository, but continuing...${RESET}"
-            fi
-        fi
+        run_step "Installing ${name}" "apt install ${pkg} -y"
     fi
 }
 
-check_glibc_repo() {
-    if [ -f "$PREFIX/etc/apt/sources.list.d/glibc.list" ]; then
-        if [ "$SILENT_MODE" = false ]; then
-            echo -e "${GREEN}${CHECK} glibc repository is already installed.${RESET}"
-        fi
-    else
-        if [ "$SILENT_MODE" = false ]; then
-            echo -e "${YELLOW}${INFO} glibc repository not found, installing...${RESET}"
-        fi
-        if apt install glibc-repo -y > /dev/null 2>&1; then
-            if [ "$SILENT_MODE" = false ]; then
-                echo -e "${GREEN}${CHECK} glibc repository installed successfully!${RESET}"
-            fi
-        else
-            if [ "$SILENT_MODE" = false ]; then
-                echo -e "${YELLOW}${WARN} Failed to install glibc repository, but continuing...${RESET}"
-            fi
-        fi
-    fi
-}
+# --- Execution Flow ---
 
 if [ "$SILENT_MODE" = false ]; then
-    clear
     display_logo
-    echo -e "${INFO} This script will:"
-    echo -e "  • Install X11 repository if needed"
-    echo -e "  • Add the BanglaCLI repository"
-    echo -e "  • Download and install the GPG key"
-    echo -e "  • Configure package management"
-    echo -e "  • Update your package list${RESET}"
+    echo -e "${INFO} ${W}Initializing system setup...${RESET}"
+    echo -e "${LINE}"
 fi
 
-check_install_x11_repo
-check_glibc_repo
+# 1. Dependency Checks
+check_dependency_repo "X11 Repository" "x11-repo" "x11.list"
+check_dependency_repo "Glibc Repository" "glibc-repo" "glibc.list"
 
-run_command "Creating repository directory" "mkdir -p \$PREFIX/etc/apt/sources.list.d"
-run_command "Adding BanglaCLI repository" "echo 'deb [arch=all] https://termuxvoid.github.io/repo BanglaCLI main' > \$PREFIX/etc/apt/sources.list.d/termuxvoid.list"
+if [ "$SILENT_MODE" = false ]; then echo -e "${LINE}"; fi
 
-run_command "Downloading GPG key" "curl -sL https://github.com/zarifsikder/BanglaCLI/raw/main/assets/BanglaCLI.gpg -o \$PREFIX/etc/apt/trusted.gpg.d/termuxvoid.gpg"
+# 2. Repository Configuration
+run_step "Creating config directory" "mkdir -p $PREFIX/etc/apt/sources.list.d"
 
-run_command "Updating package repositories" "apt update -y"
+run_step "Adding BanglaCLI source" "echo 'deb [arch=all] https://termuxvoid.github.io/repo BanglaCLI main' > $PREFIX/etc/apt/sources.list.d/termuxvoid.list"
 
-print_header "${GREEN}🎉 BanglaCLI Repository Setup Complete! 🎉${RESET}"
-echo -e "${INFO} You can now install packages from the BanglaCLI repository."
-echo -e "\n${INFO} Thank you for using BanglaCLI repository!${RESET}"
+run_step "Importing GPG Security Key" "curl -sL https://github.com/zarifsikder/BanglaCLI/raw/main/assets/BanglaCLI.gpg -o $PREFIX/etc/apt/trusted.gpg.d/termuxvoid.gpg"
+
+run_step "Refreshing package lists" "apt update -y"
+
+# 3. Finalization
+if [ "$SILENT_MODE" = false ]; then
+    echo -e "${LINE}"
+    print_header "SETUP COMPLETED SUCCESSFULLY"
+    echo -e "\n${INFO} ${W}You can now install packages from the repository."
+    echo -e "${INFO} ${W}Try: ${C}apt install <package-name>${RESET}"
+    echo -e "${INFO} ${Y}Thank you for choosing BanglaCLI!${RESET}\n"
+fi

@@ -251,14 +251,8 @@ If the tool still doesn't appear, it may have a different package name — check
 Join our growing community of security researchers and mobile hackers.
 
 <div align="center">
-  <a href="https://telegram.me/nullxvoid">
-    <img src="https://img.shields.io/badge/Telegram-Join_Group-2CA5E0?style=for-the-badge&logo=telegram" alt="Telegram">
-  </a>
-  <a href="https://youtube.com/@alienkrishnorg">
-    <img src="https://img.shields.io/badge/YouTube-Tutorials-FF0000?style=for-the-badge&logo=youtube" alt="YouTube">
-  </a>
-  <a href="https://github.com/zarifsikder/BanglaCLI">
-    <img src="https://img.shields.io/badge/GitHub-Source_Code-181717?style=for-the-badge&logo=github" alt="GitHub">
+  <a href="https://t.me/Websanapps">
+    <img src="https://img.shields.io/badge/Telegram-Join_Channel-2CA5E0?style=for-the-badge&logo=telegram" alt="Telegram">
   </a>
 </div>
 

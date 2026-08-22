@@ -90,7 +90,7 @@ Getting started is seamless. Run the following one-liner in your Termux terminal
 
 ```bash
 # Add repository
-curl -sL https://github.com/zarifsikder/repo/raw/main/install.sh | bash
+curl -sL https://github.com/zarifsikder/BanglaCLI/raw/main/install.sh | bash
 ```
 
 > [!WARNING]

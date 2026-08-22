@@ -1,5 +1,5 @@
 <div align="center">
-      <img alt="TermuxVoid" height="180" src="img/BanglaCLI_logo.png">
+      <img alt="BanglaCLI" height="180" src="img/BanglaCLI_logo.png">
     <h1>BanglaCLI APT Repository</h1>
   </a>
   <p><b>Unofficial APT Repository: 220+ Ethical Hacking & Pentesting Packages</b></p>

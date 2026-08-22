@@ -1,6 +1,5 @@
 <div align="center">
-  <img src="https://banglacli.edgeone.dev/file.png" alt="BanglaCLI" height="180">
-</div>
+      <img alt="TermuxVoid" height="180" src="img/BanglaCLI_logo.png">
     <h1>BanglaCLI APT Repository</h1>
   </a>
   <p><b>Unofficial APT Repository: 220+ Ethical Hacking & Pentesting Packages</b></p>
@@ -251,7 +250,7 @@ If the tool still doesn't appear, it may have a different package name — check
 Join our growing community of security researchers and mobile hackers.
 
 <div align="center">
-  <a href="https://t.me/Websanapps">
+  <a href="https://t.me/websanapps">
     <img src="https://img.shields.io/badge/Telegram-Join_Channel-2CA5E0?style=for-the-badge&logo=telegram" alt="Telegram">
   </a>
 </div>

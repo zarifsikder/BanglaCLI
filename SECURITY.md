@@ -32,10 +32,6 @@ Check the following:
 4. **Local changes:** Identify files created, commands linked, configuration files changed, and what removal does.
 5. **Authorization:** Security tools may be dual-use. Use them only on systems and data you own or are explicitly authorized to test.
 
-## Report a Vulnerability
-
-Open a [GitHub Issue](https://github.com/TermuxVoid/repo/issues) or contact [@nullxvoid](https://telegram.me/nullxvoid) on Telegram.
-
 ## Legal
 
 These tools are for **educational and authorized security testing only**. Do not use your knowledge for illegal things. I won't take responsibility for your shit — you mess up, you face the consequences yourself. Stay ethical.

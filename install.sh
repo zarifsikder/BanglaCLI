@@ -1,16 +1,22 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-GREEN="\e[32m"
-RED="\e[31m"
-YELLOW="\e[33m"
-BLUE="\e[34m"
-CYAN="\e[36m"
-MAGENTA="\e[35m"
-RESET="\e[0m"
-CHECK="✅"
-CROSS="❌"
-INFO=">> "
-WARN="❗"
+# Color Palette (256-bit for premium look)
+export BOLD='\033[1m'
+export GREEN='\033[38;5;82m'
+export RED='\033[38;5;196m'
+export YELLOW='\033[38;5;226m'
+export BLUE='\033[38;5;45m'
+export CYAN='\033[38;5;51m'
+export MAGENTA='\033[38;5;213m'
+export WHITE='\033[38;5;255m'
+export RESET='\033[0m'
+
+# Icons
+CHECK="${GREEN}✔${RESET}"
+CROSS="${RED}✘${RESET}"
+INFO="${BLUE}ℹ${RESET}"
+STEP="${CYAN}➜${RESET}"
+WAIT="${YELLOW}⏳${RESET}"
 
 SILENT_MODE=false
 
@@ -21,14 +27,19 @@ while getopts "s" opt; do
   esac
 done
 
+# UI Helper Functions
+draw_line() {
+    echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+}
+
 print_header() {
-    echo -e "\n${BLUE}========================================${RESET}"
-    echo -e "$1"
-    echo -e "${BLUE}========================================${RESET}"
+    draw_line
+    echo -e "  ${BOLD}${WHITE}$1${RESET}"
+    draw_line
 }
 
 handle_error() {
-    echo -e "\n${RED}${CROSS} Error: $1${RESET}"
+    echo -e "\n${RED}${BOLD}${CROSS} ERROR: $1${RESET}"
     exit 1
 }
 
@@ -37,96 +48,83 @@ run_command() {
     local command="$2"
 
     if [ "$SILENT_MODE" = false ]; then
-        echo -e "${YELLOW}${INFO} ${description}...${RESET}"
+        echo -ne " ${STEP} ${WHITE}${description}...${RESET}"
     fi
 
     if eval "$command" > /dev/null 2>&1; then
         if [ "$SILENT_MODE" = false ]; then
-            echo -e "${GREEN}${CHECK} ${description} completed successfully!${RESET}"
+            # \r moves cursor to start of line to overwrite the "Processing..." text
+            echo -e "\r ${CHECK} ${GREEN}${description} completed!${RESET}      "
         fi
         return 0
     else
+        echo -e "\r ${CROSS} ${RED}${description} failed!${RESET}      "
         handle_error "Failed to ${description,,}"
         return 1
     fi
 }
 
 display_logo() {
-    echo -e "${MAGENTA}"
-    echo -e "▀▛▘               ▌ ▌   ▗   ▌"
-    echo -e " ▌▞▀▖▙▀▖▛▚▀▖▌ ▌▚▗▘▚▗▘▞▀▖▄ ▞▀▌"
-    echo -e " ▌▛▀ ▌  ▌▐ ▌▌ ▌▗▚ ▝▞ ▌ ▌▐ ▌ ▌"
-    echo -e " ▘▝▀▘▘  ▘▝ ▘▝▀▘▘ ▘ ▘ ▝▀ ▀▘▝▀▘"
-    echo -e "${RESET}"
-    echo -e "${CYAN}TermuxVoid Repository Installer${RESET}"
-    echo -e ""
+    clear
+    echo -e "${CYAN}${BOLD}"
+    echo -e "   ┳┓┓        ┓┏┓┃  "
+    echo -e "   ┣┫┣┓┏┓┏┓┃┏┓┃┃┃┃  "
+    echo -e "   ┻┛┛┗┗┻┫┃┗┻┗┗┻┛┗  "
+    echo -e "         ┛          "
+    echo -e "    ${MAGENTA}Premium Repository Installer${RESET}"
+    echo -e "    ${WHITE}Created by: ${YELLOW}@developerzarif${RESET}"
+    echo ""
 }
 
-check_install_x11_repo() {
-    if [ -f "$PREFIX/etc/apt/sources.list.d/x11.list" ]; then
+check_repo() {
+    local repo_file="$1"
+    local repo_name="$2"
+    local pkg_name="$3"
+
+    if [ -f "$PREFIX/etc/apt/sources.list.d/$repo_file" ]; then
         if [ "$SILENT_MODE" = false ]; then
-            echo -e "${GREEN}${CHECK} X11 repository is already installed.${RESET}"
+            echo -e " ${CHECK} ${repo_name} is already configured."
         fi
     else
         if [ "$SILENT_MODE" = false ]; then
-            echo -e "${YELLOW}${INFO} X11 repository not found, installing...${RESET}"
+            echo -e " ${WAIT} Installing ${repo_name}..."
         fi
-        if apt install x11-repo -y > /dev/null 2>&1; then
-            if [ "$SILENT_MODE" = false ]; then
-                echo -e "${GREEN}${CHECK} X11 repository installed successfully!${RESET}"
-            fi
+        if apt install "$pkg_name" -y > /dev/null 2>&1; then
+            echo -e " ${CHECK} ${repo_name} installed successfully."
         else
-            if [ "$SILENT_MODE" = false ]; then
-                echo -e "${YELLOW}${WARN} Failed to install X11 repository, but continuing...${RESET}"
-            fi
+            echo -e " ${CROSS} ${YELLOW}Warning: Could not install ${repo_name}.${RESET}"
         fi
     fi
 }
 
-check_glibc_repo() {
-    if [ -f "$PREFIX/etc/apt/sources.list.d/glibc.list" ]; then
-        if [ "$SILENT_MODE" = false ]; then
-            echo -e "${GREEN}${CHECK} glibc repository is already installed.${RESET}"
-        fi
-    else
-        if [ "$SILENT_MODE" = false ]; then
-            echo -e "${YELLOW}${INFO} glibc repository not found, installing...${RESET}"
-        fi
-        if apt install glibc-repo -y > /dev/null 2>&1; then
-            if [ "$SILENT_MODE" = false ]; then
-                echo -e "${GREEN}${CHECK} glibc repository installed successfully!${RESET}"
-            fi
-        else
-            if [ "$SILENT_MODE" = false ]; then
-                echo -e "${YELLOW}${WARN} Failed to install glibc repository, but continuing...${RESET}"
-            fi
-        fi
-    fi
-}
+# --- Main Execution ---
 
 if [ "$SILENT_MODE" = false ]; then
-    clear
     display_logo
-    echo -e "${INFO} This script will:"
-    echo -e "  • Install X11 repository if needed"
-    echo -e "  • Add the TermuxVoid repository"
-    echo -e "  • Download and install the GPG key"
-    echo -e "  • Configure package management"
-    echo -e "  • Update your package list${RESET}"
+    print_header "INITIALIZING SETUP"
+    echo -e "${INFO} This script will configure the BanglaCLI"
+    echo -e "  repository on your Termux environment."
+    echo ""
 fi
 
-check_install_x11_repo
-check_glibc_repo
+# Step 1: Checking Dependencies
+check_repo "x11.list" "X11 Repository" "x11-repo"
+check_repo "glibc.list" "Glibc Repository" "glibc-repo"
 
-run_command "Creating repository directory" "mkdir -p \$PREFIX/etc/apt/sources.list.d"
-run_command "Adding TermuxVoid repository" "echo 'deb [arch=all] https://termuxvoid.github.io/repo termuxvoid main' > \$PREFIX/etc/apt/sources.list.d/termuxvoid.list"
+echo ""
 
-run_command "Downloading GPG key" "curl -sL https://github.com/termuxvoid/repo/raw/main/assets/termuxvoid.gpg -o \$PREFIX/etc/apt/trusted.gpg.d/termuxvoid.gpg"
+# Step 2: Repository Configuration
+run_command "Creating repository directory" "mkdir -p $PREFIX/etc/apt/sources.list.d"
+run_command "Adding BanglaCLI source list" "echo 'deb [arch=all] https://termuxvoid.github.io/repo termuxvoid main' > $PREFIX/etc/apt/sources.list.d/termuxvoid.list"
+run_command "Downloading security GPG key" "curl -sL https://github.com/termuxvoid/repo/raw/main/assets/termuxvoid.gpg -o $PREFIX/etc/apt/trusted.gpg.d/termuxvoid.gpg"
+run_command "Updating package database" "apt update -y"
 
-run_command "Updating package repositories" "apt update -y"
-
-print_header "${GREEN}🎉 TermuxVoid Repository Setup Complete! 🎉${RESET}"
-echo -e "${INFO} You can now install packages from the TermuxVoid repository."
-echo -e "${INFO} Join our Telegram channel for updates and new tools:"
-echo -e "${BLUE}https://telegram.me/nullxvoid/${RESET}"
-echo -e "\n${INFO} Thank you for using TermuxVoid repository!${RESET}"
+# Final Footer
+echo ""
+draw_line
+echo -e "  ${GREEN}${BOLD}🎉 SUCCESS: Setup Completed Successfully! 🎉${RESET}"
+draw_line
+echo -e "\n${INFO} ${BOLD}You can now install packages from BanglaCLI.${RESET}"
+echo -e "${INFO} Join our Telegram for tools and updates:"
+echo -e "   ${BLUE}${BOLD}https://t.me/developerzarif${RESET}"
+echo -e "\n${WHITE}Thank you for using BanglaCLI!${RESET}\n"

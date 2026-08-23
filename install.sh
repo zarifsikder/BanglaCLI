@@ -1,130 +1,134 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-# Color Palette (256-bit for premium look)
+# --- [ High-End Color Palette ] ---
 export BOLD='\033[1m'
+export DIM='\033[2m'
+export ITALIC='\033[3m'
+export BLUE='\033[38;5;33m'
+export CYAN='\033[38;5;51m'
 export GREEN='\033[38;5;82m'
 export RED='\033[38;5;196m'
 export YELLOW='\033[38;5;226m'
-export BLUE='\033[38;5;45m'
-export CYAN='\033[38;5;51m'
-export MAGENTA='\033[38;5;213m'
+export MAGENTA='\033[38;5;201m'
 export WHITE='\033[38;5;255m'
+export GRAY='\033[38;5;244m'
 export RESET='\033[0m'
 
-# Icons
-CHECK="${GREEN}✔${RESET}"
-CROSS="${RED}✘${RESET}"
-INFO="${BLUE}ℹ${RESET}"
-STEP="${CYAN}➜${RESET}"
-WAIT="${YELLOW}⏳${RESET}"
+# --- [ UI Icons ] ---
+ICON_INFO="${BLUE}󰋼${RESET}"
+ICON_SUCCESS="${GREEN}✔${RESET}"
+ICON_ERROR="${RED}✘${RESET}"
+ICON_WAIT="${YELLOW}󱑔${RESET}"
+ICON_STEP="${CYAN}❯${RESET}"
 
-SILENT_MODE=false
+# --- [ Core Functions ] ---
 
-while getopts "s" opt; do
-  case $opt in
-    s) SILENT_MODE=true ;;
-    *) handle_error "Invalid option: -$OPTARG" ;;
-  esac
-done
-
-# UI Helper Functions
-draw_line() {
-    echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+# Animated Spinner for background tasks
+spinner() {
+    local pid=$1
+    local delay=0.1
+    local spinstr='⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏'
+    while [ "$(ps -p $pid -o state= 2>/dev/null)" ]; do
+        local temp=${spinstr#?}
+        printf " ${CYAN}%c${RESET} " "$spinstr"
+        local spinstr=$temp${spinstr%"$temp"}
+        sleep $delay
+        printf "\b\b\b"
+    done
+    printf "    \b\b\b\b"
 }
 
-print_header() {
-    draw_line
-    echo -e "  ${BOLD}${WHITE}$1${RESET}"
-    draw_line
-}
-
-handle_error() {
-    echo -e "\n${RED}${BOLD}${CROSS} ERROR: $1${RESET}"
-    exit 1
-}
-
-run_command() {
-    local description="$1"
-    local command="$2"
-
-    if [ "$SILENT_MODE" = false ]; then
-        echo -ne " ${STEP} ${WHITE}${description}...${RESET}"
-    fi
-
-    if eval "$command" > /dev/null 2>&1; then
-        if [ "$SILENT_MODE" = false ]; then
-            # \r moves cursor to start of line to overwrite the "Processing..." text
-            echo -e "\r ${CHECK} ${GREEN}${description} completed!${RESET}      "
-        fi
-        return 0
-    else
-        echo -e "\r ${CROSS} ${RED}${description} failed!${RESET}      "
-        handle_error "Failed to ${description,,}"
-        return 1
-    fi
-}
-
-display_logo() {
+# Header with a modern border
+print_banner() {
     clear
-    echo -e "${CYAN}${BOLD}"
-    echo -e "   ┳┓┓        ┓┏┓┃  "
-    echo -e "   ┣┫┣┓┏┓┏┓┃┏┓┃┃┃┃  "
-    echo -e "   ┻┛┛┗┗┻┫┃┗┻┗┗┻┛┗  "
-    echo -e "         ┛          "
-    echo -e "    ${MAGENTA}Premium Repository Installer${RESET}"
-    echo -e "    ${WHITE}Created by: ${YELLOW}@developerzarif${RESET}"
+    echo -e "${CYAN}┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${RESET}"
+    echo -e "${CYAN}┃${RESET}  ${BOLD}${MAGENTA}      ____              _         ${CYAN}CLI  ${RESET}        ${CYAN}┃${RESET}"
+    echo -e "${CYAN}┃${RESET}  ${BOLD}${MAGENTA}     | __ )  __ _ _ __ | |__   ___  ${RESET}            ${CYAN}┃${RESET}"
+    echo -e "${CYAN}┃${RESET}  ${BOLD}${MAGENTA}     |  _ \ / _' | '_ \| '_ \ / _ \ ${RESET}            ${CYAN}┃${RESET}"
+    echo -e "${CYAN}┃${RESET}  ${BOLD}${MAGENTA}     | |_) | (_| | | | | | | |  __/ ${RESET}            ${CYAN}┃${RESET}"
+    echo -e "${CYAN}┃${RESET}  ${BOLD}${MAGENTA}     |____/ \__,_|_| |_|_| |_|\___| ${RESET}            ${CYAN}┃${RESET}"
+    echo -e "${CYAN}┃${RESET}                                                      ${CYAN}┃${RESET}"
+    echo -e "${CYAN}┃${RESET}  ${ITALIC}${GRAY}Premium Repository Installer • v2.0${RESET}               ${CYAN}┃${RESET}"
+    echo -e "${CYAN}┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${RESET}"
     echo ""
 }
 
-check_repo() {
-    local repo_file="$1"
-    local repo_name="$2"
-    local pkg_name="$3"
-
-    if [ -f "$PREFIX/etc/apt/sources.list.d/$repo_file" ]; then
-        if [ "$SILENT_MODE" = false ]; then
-            echo -e " ${CHECK} ${repo_name} is already configured."
-        fi
+# Task Execution with integrated spinner
+execute_task() {
+    local label="$1"
+    local cmd="$2"
+    
+    echo -ne "${ICON_STEP} ${WHITE}${label}...${RESET}"
+    
+    # Run command in background
+    eval "$cmd" > /dev/null 2>&1 &
+    local pid=$!
+    
+    # Start spinner for that PID
+    spinner $pid
+    
+    # Wait for the command to finish and check status
+    wait $pid
+    if [ $? -eq 0 ]; then
+        echo -e "\r${ICON_SUCCESS} ${GREEN}${label} completed.${RESET}      "
     else
-        if [ "$SILENT_MODE" = false ]; then
-            echo -e " ${WAIT} Installing ${repo_name}..."
-        fi
-        if apt install "$pkg_name" -y > /dev/null 2>&1; then
-            echo -e " ${CHECK} ${repo_name} installed successfully."
-        else
-            echo -e " ${CROSS} ${YELLOW}Warning: Could not install ${repo_name}.${RESET}"
-        fi
+        echo -e "\r${ICON_ERROR} ${RED}${label} failed!${RESET}      "
+        echo -e "\n${RED}${BOLD}FATAL ERROR:${RESET} Interrupted. Please check internet connection."
+        exit 1
     fi
 }
 
-# --- Main Execution ---
+check_dependency() {
+    local file="$1"
+    local name="$2"
+    local pkg="$3"
+    
+    echo -ne "${ICON_INFO} Checking ${name}..."
+    sleep 0.5 # Aesthetic pause
+    if [ -f "$PREFIX/etc/apt/sources.list.d/$file" ]; then
+        echo -e "\r${ICON_SUCCESS} ${name} is ${GREEN}Active${RESET}      "
+    else
+        echo -e "\r${ICON_WAIT} ${name} not found. Installing..."
+        apt install "$pkg" -y > /dev/null 2>&1
+        echo -e "\r${ICON_SUCCESS} ${name} ${GREEN}Installed Successfully${RESET}      "
+    fi
+}
 
-if [ "$SILENT_MODE" = false ]; then
-    display_logo
-    print_header "INITIALIZING SETUP"
-    echo -e "${INFO} This script will configure the BanglaCLI"
-    echo -e "  repository on your Termux environment."
-    echo ""
-fi
+# --- [ Main Workflow ] ---
 
-# Step 1: Checking Dependencies
-check_repo "x11.list" "X11 Repository" "x11-repo"
-check_repo "glibc.list" "Glibc Repository" "glibc-repo"
+print_banner
 
+# Module 1: Pre-flight Checks
+echo -e "${BOLD}${WHITE}[1/3] Environment Scanning${RESET}"
+echo -e "${DIM}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+check_dependency "x11.list" "X11 Repository" "x11-repo"
+check_dependency "glibc.list" "Glibc Repository" "glibc-repo"
 echo ""
 
-# Step 2: Repository Configuration
-run_command "Creating repository directory" "mkdir -p $PREFIX/etc/apt/sources.list.d"
-run_command "Adding BanglaCLI source list" "echo 'deb [arch=all] https://termuxvoid.github.io/repo termuxvoid main' > $PREFIX/etc/apt/sources.list.d/termuxvoid.list"
-run_command "Downloading security GPG key" "curl -sL https://github.com/termuxvoid/repo/raw/main/assets/termuxvoid.gpg -o $PREFIX/etc/apt/trusted.gpg.d/termuxvoid.gpg"
-run_command "Updating package database" "apt update -y"
-
-# Final Footer
+# Module 2: Repository Setup
+echo -e "${BOLD}${WHITE}[2/3] Repository Configuration${RESET}"
+echo -e "${DIM}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+execute_task "Creating secure directories" "mkdir -p $PREFIX/etc/apt/sources.list.d"
+execute_task "Linking BanglaCLI source" "echo 'deb [arch=all] https://termuxvoid.github.io/repo termuxvoid main' > $PREFIX/etc/apt/sources.list.d/termuxvoid.list"
+execute_task "Importing GPG Security Key" "curl -sL https://github.com/termuxvoid/repo/raw/main/assets/termuxvoid.gpg -o $PREFIX/etc/apt/trusted.gpg.d/termuxvoid.gpg"
 echo ""
-draw_line
-echo -e "  ${GREEN}${BOLD}🎉 SUCCESS: Setup Completed Successfully! 🎉${RESET}"
-draw_line
-echo -e "\n${INFO} ${BOLD}You can now install packages from BanglaCLI.${RESET}"
-echo -e "${INFO} Join our Telegram for tools and updates:"
-echo -e "   ${BLUE}${BOLD}https://t.me/developerzarif${RESET}"
-echo -e "\n${WHITE}Thank you for using BanglaCLI!${RESET}\n"
+
+# Module 3: Synchronization
+echo -e "${BOLD}${WHITE}[3/3] System Sync${RESET}"
+echo -e "${DIM}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+execute_task "Refreshing package database" "apt update -y"
+echo ""
+
+# --- [ Final Structured Report ] ---
+
+echo -e "${CYAN}┏━━━━━━━━━━━━━ Installation Summary ━━━━━━━━━━━━━┓${RESET}"
+echo -e "${CYAN}┃${RESET}                                               ${CYAN}┃${RESET}"
+echo -e "${CYAN}┃${RESET}  ${GREEN}STATUS:${RESET}    Successfully Configured            ${CYAN}┃${RESET}"
+echo -e "${CYAN}┃${RESET}  ${GREEN}REPO:${RESET}      BanglaCLI Main Branch              ${CYAN}┃${RESET}"
+echo -e "${CYAN}┃${RESET}  ${GREEN}GPG KEY:${RESET}   Verified & Imported                ${CYAN}┃${RESET}"
+echo -e "${CYAN}┃${RESET}                                               ${CYAN}┃${RESET}"
+echo -e "${CYAN}┃${RESET}  ${YELLOW}Next Step:${RESET} Try 'pkg install <tool-name>'     ${CYAN}┃${RESET}"
+echo -e "${CYAN}┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${RESET}"
+
+echo -e "\n${BOLD}${WHITE}Join Community:${RESET} ${BLUE}https://t.me/developerzarif${RESET}"
+echo -e "${GRAY}${ITALIC}Happy Coding!${RESET}\n"

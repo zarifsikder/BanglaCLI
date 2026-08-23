@@ -1,5 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-rm -f "$PREFIX/bin/gophish"
-rm -rf "$PREFIX/share/gophish"
-echo "Gophish completely removed."
-exit 0

@@ -1,4 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-rm -f "$PREFIX/bin/elpscrk"
-rm -rf "$PREFIX/share/elpscrk"
-exit 0

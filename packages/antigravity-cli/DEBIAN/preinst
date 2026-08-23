@@ -1,7 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-ARCH=$(uname -m)
-if [ "$ARCH" != "aarch64" ]; then
-    echo "Error: antigravity-cli only supports aarch64." >&2
-    exit 1
-fi
-exit 0

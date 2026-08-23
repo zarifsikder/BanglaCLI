@@ -1,5 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-rm -f "$PREFIX/bin/breacher"
-rm -rf "$PREFIX/share/breacher"
-echo "Breacher removed."
-exit 0

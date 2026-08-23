@@ -1,4 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-gem uninstall wpscan -v 4.0.0 -x --force 2>/dev/null || true
-echo "WPScan completely removed."
-exit 0

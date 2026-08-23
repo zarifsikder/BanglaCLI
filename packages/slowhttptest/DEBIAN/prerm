@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-rm -rf $PREFIX/bin/slowhttptest
-rm -rf $PREFIX/share/slowhttptest

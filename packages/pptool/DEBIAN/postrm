@@ -1,4 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-
-pip uninstall -y pptool 2>/dev/null && echo "pptool removed completely." || echo "pptool not found or already removed."
-exit 0

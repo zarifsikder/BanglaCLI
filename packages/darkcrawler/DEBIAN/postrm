@@ -1,6 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-
-rm -f "$PREFIX/bin/darkcrawler"
-rm -rf "$PREFIX/share/darkcrawler"
-
-exit 0

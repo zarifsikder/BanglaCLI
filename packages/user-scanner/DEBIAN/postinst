@@ -1,8 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-
-set -e
-
-echo "Installing user-scanner..."
-pip install user-scanner==1.5.0
-echo "user-scanner installed successfully."
-exit 0

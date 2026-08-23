@@ -1,5 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-
-echo "[*] Uninstalling Holehe..."
-pip uninstall -y holehe 2>/dev/null
-echo "[+] Uninstallation complete"

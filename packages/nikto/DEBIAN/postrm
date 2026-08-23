@@ -1,6 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-
-echo "[*] Removing Nikto..."
-rm -rf "$PREFIX/share/nikto"
-rm -f "$PREFIX/bin/nikto"
-echo "[+] Nikto uninstalled."

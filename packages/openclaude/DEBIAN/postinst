@@ -1,8 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-
-set -e
-
-echo "Installing OpenClaude..."
-npm install -g @gitlawb/openclaude@0.28.0 || exit 1
-echo "OpenClaude installed successfully."
-exit 0

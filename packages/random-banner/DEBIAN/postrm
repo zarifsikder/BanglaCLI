@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-rm -rf $PREFIX/share/rbq
-rm -rf $PREFIX/bin/random-banner

@@ -1,8 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-
-PREFIX=${PREFIX:-/data/data/com.termux/files/usr}
-
-rm -f "$PREFIX/bin/copilot"
-rm -rf "$PREFIX/share/copilot-cli"
-
-exit 0

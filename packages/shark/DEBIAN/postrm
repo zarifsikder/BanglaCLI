@@ -1,7 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-
-rm -f "$PREFIX/bin/shark"
-rm -rf "$PREFIX/share/shark"
-
-echo "shark completely removed."
-exit 0

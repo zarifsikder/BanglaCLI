@@ -1,4 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-rm -rf "$PREFIX/share/apkeditor"
-rm -f "$PREFIX/bin/apkeditor"
-echo "[+] APKEditor removed"

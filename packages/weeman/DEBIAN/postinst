@@ -1,4 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-bash ${PREFIX}/bin/weeman-installer
-echo "[*] weeman installation finished."
-echo "[*] Run \'weeman\' to execute it."

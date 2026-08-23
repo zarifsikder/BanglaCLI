@@ -1,5 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-rm -f "$PREFIX/bin/goshs"
-rm -f "$HOME/go/bin/goshs"
-echo "goshs completely removed."
-exit 0

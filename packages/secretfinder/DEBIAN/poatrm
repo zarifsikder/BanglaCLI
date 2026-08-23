@@ -1,4 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-rm -f "$PREFIX/bin/secretfinder"
-echo "SecretFinder removed."
-exit 0

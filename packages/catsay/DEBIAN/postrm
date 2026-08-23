@@ -1,9 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-
-echo "Removing catsay..."
-
-rm -f "$PREFIX/bin/catsay"
-rm -rf "$PREFIX/share/catsay"
-
-echo "catsay has been fully removed."
-exit 0

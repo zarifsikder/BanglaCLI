@@ -1,5 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash 
-venomDir="$PREFIX/var/venom"
-if [[ -d "$venomDir" ]]; then
-  rm -rf $venomDir
-fi

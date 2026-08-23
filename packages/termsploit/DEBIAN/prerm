@@ -1,5 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash 
-termsploitDir="$PREFIX/opt/termsploit"
-if [[ -d "$termsploitDir" ]]; then
-  rm -rf $termsploitDir
-fi

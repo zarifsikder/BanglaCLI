@@ -1,4 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-rm -f "$PREFIX/bin/mimo"
-rm -rf "$PREFIX/share/mimocode"
-exit 0

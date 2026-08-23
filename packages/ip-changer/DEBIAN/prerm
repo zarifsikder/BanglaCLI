@@ -1,3 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-rm -rf $PREFIX/bin/ip-changer
-rm -rf $PREFIX/share/ip-changer

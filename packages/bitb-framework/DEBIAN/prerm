@@ -1,5 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-if [[ -d ${HOME}/.local/share/bitb ]]; then
-  rm -rf ${HOME}/.local/share/bitb
-fi
-

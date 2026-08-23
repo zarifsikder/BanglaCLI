@@ -53,12 +53,12 @@ run_command() {
 
 display_logo() {
     echo -e "${MAGENTA}"
-    echo -e " ▛▀▖               ▜       ▄▀▀▖ █    ▗ "
-    echo -e " █▄▘ ▄▄▖ ▛▀▖ ▄▄▖ █ ▐  ▄▄▖  █    █    ▄ "
-    echo -e " █▄▖ ▝▖ █ █ █ ▝▖ █ █ ▐ ▝▖ █  █    █    █ "
-    echo -e " ▀▀  ▀▀▀▘▘ ▘ ▀▀▀▘ ▀▘ ▘ ▀▀▀▘  ▝▀▀  ▀▀▀▘ ▀▘"
+    echo -e "▀▛▘               ▌ ▌   ▗   ▌"
+    echo -e " ▌▞▀▖▙▀▖▛▚▀▖▌ ▌▚▗▘▚▗▘▞▀▖▄ ▞▀▌"
+    echo -e " ▌▛▀ ▌  ▌▐ ▌▌ ▌▗▚ ▝▞ ▌ ▌▐ ▌ ▌"
+    echo -e " ▘▝▀▘▘  ▘▝ ▘▝▀▘▘ ▘ ▘ ▝▀ ▀▘▝▀▘"
     echo -e "${RESET}"
-    echo -e "${CYAN}BanglaCLI Repository Installer${RESET}"
+    echo -e "${CYAN}TermuxVoid Repository Installer${RESET}"
     echo -e ""
 }
 
@@ -109,7 +109,7 @@ if [ "$SILENT_MODE" = false ]; then
     display_logo
     echo -e "${INFO} This script will:"
     echo -e "  • Install X11 repository if needed"
-    echo -e "  • Add the BanglaCLI repository"
+    echo -e "  • Add the TermuxVoid repository"
     echo -e "  • Download and install the GPG key"
     echo -e "  • Configure package management"
     echo -e "  • Update your package list${RESET}"
@@ -119,14 +119,14 @@ check_install_x11_repo
 check_glibc_repo
 
 run_command "Creating repository directory" "mkdir -p \$PREFIX/etc/apt/sources.list.d"
-run_command "Adding BanglaCLI repository" "echo 'deb [arch=all] https://termuxvoid.github.io/repo termuxvoid main' > \$PREFIX/etc/apt/sources.list.d/termuxvoid.list"
+run_command "Adding TermuxVoid repository" "echo 'deb [arch=all] https://termuxvoid.github.io/repo termuxvoid main' > \$PREFIX/etc/apt/sources.list.d/termuxvoid.list"
 
 run_command "Downloading GPG key" "curl -sL https://github.com/termuxvoid/repo/raw/main/assets/termuxvoid.gpg -o \$PREFIX/etc/apt/trusted.gpg.d/termuxvoid.gpg"
 
 run_command "Updating package repositories" "apt update -y"
 
-print_header "${GREEN}🎉 BanglaCLI Repository Setup Complete! 🎉${RESET}"
-echo -e "${INFO} You can now install packages from the BanglaCLI repository."
+print_header "${GREEN}🎉 TermuxVoid Repository Setup Complete! 🎉${RESET}"
+echo -e "${INFO} You can now install packages from the TermuxVoid repository."
 echo -e "${INFO} Join our Telegram channel for updates and new tools:"
 echo -e "${BLUE}https://telegram.me/nullxvoid/${RESET}"
-echo -e "\n${INFO} Thank you for using BanglaCLI repository!${RESET}"
+echo -e "\n${INFO} Thank you for using TermuxVoid repository!${RESET}"
